@@ -3,10 +3,15 @@
   "compilerOptions": {
     "types": ["jest", "node"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "react-native/types/modules/BatchedBridge": ["./path/to/your/customBatchedBridge.d.ts"],
+      "@types/react-native-vector-icons": ["./path/to/your/customVectorIcons.d.ts"]
     },
     "allowImportingTsExtensions": false,
     "module": "esnext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx"
   },
   "include": [
     "./src/**/*",
@@ -15,6 +20,9 @@
     "jest.setup.js",
     "jest.config.js",
     "babel.config.js",
-    "index.js"
+    "index.js",
   ],
+  "exclude": [
+    "node_modules"
+  ]
 }

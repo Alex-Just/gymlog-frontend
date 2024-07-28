@@ -1,34 +1,26 @@
-import { StatusBar, View } from 'react-native';
-import type { PropsWithChildren } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
+import React from 'react';
+import { SafeAreaView, View, ViewProps } from 'react-native';
 import { useTheme } from '@/theme';
 
-function SafeScreen({ children }: PropsWithChildren) {
-	const { layout, variant, navigationTheme } = useTheme();
-	const insets = useSafeAreaInsets();
+interface ISafeScreenProps extends ViewProps {
+  children: React.ReactNode;
+}
 
-	return (
-		<View
-			style={[
-				layout.flex_1,
-				{
-					backgroundColor: navigationTheme.colors.background,
-					// Paddings to handle safe area
-					paddingTop: insets.top,
-					paddingBottom: insets.bottom,
-					paddingLeft: insets.left,
-					paddingRight: insets.right,
-				},
-			]}
-		>
-			<StatusBar
-				barStyle={variant === 'dark' ? 'light-content' : 'dark-content'}
-				backgroundColor={navigationTheme.colors.background}
-			/>
-			{children}
-		</View>
-	);
+export function SafeScreen({ children, style, ...props }: ISafeScreenProps) {
+  const { colors, gutters, layout } = useTheme();
+
+  return (
+    <SafeAreaView
+      style={[layout.flex_1, { backgroundColor: colors.background }]}
+    >
+      <View
+        style={[layout.flex_1, gutters.padding_16, gutters.paddingTop_0, style]}
+        {...props}
+      >
+        {children}
+      </View>
+    </SafeAreaView>
+  );
 }
 
 export default SafeScreen;

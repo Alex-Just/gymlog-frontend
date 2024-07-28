@@ -1,0 +1,22 @@
+--- node_modules/@types/react-native-vector-icons/node_modules/@types/react-native/index.d.ts.orig	2024-08-06 19:21:45
++++ node_modules/@types/react-native-vector-icons/node_modules/@types/react-native/index.d.ts	2024-08-06 19:22:47
+@@ -9872,15 +9872,15 @@
+      */
+     // const originalXMLHttpRequest: any;
+ 
+-    const __BUNDLE_START_TIME__: number;
+-    const ErrorUtils: ErrorUtils;
++    // const __BUNDLE_START_TIME__: number;
++    // const ErrorUtils: ErrorUtils;
+ 
+     /**
+      * This variable is set to true when react-native is running in Dev mode
+      * @example
+      * if (__DEV__) console.log('Running in dev mode')
+      */
+-    const __DEV__: boolean;
++    // const __DEV__: boolean;
+ 
+-    const HermesInternal: null | {};
++    // const HermesInternal: null | {};
+ }
