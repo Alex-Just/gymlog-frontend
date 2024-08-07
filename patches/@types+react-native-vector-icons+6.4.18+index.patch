@@ -1,8 +1,8 @@
---- node_modules/@types/react-native-vector-icons/node_modules/@types/react-native/index.d.ts.orig	2024-08-06 19:21:45
-+++ node_modules/@types/react-native-vector-icons/node_modules/@types/react-native/index.d.ts	2024-08-06 19:22:47
+--- node_modules/@types/react-native-vector-icons/node_modules/@types/react-native/index.d.ts	2024-08-07 15:27:00
++++ node_modules/@types/react-native-vector-icons/node_modules/@types/react-native/index.d.ts	2024-08-07 15:27:12
 @@ -9872,15 +9872,15 @@
       */
-     // const originalXMLHttpRequest: any;
+     const originalXMLHttpRequest: any;
  
 -    const __BUNDLE_START_TIME__: number;
 -    const ErrorUtils: ErrorUtils;
