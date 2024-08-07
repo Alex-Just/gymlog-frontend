@@ -3,17 +3,15 @@ import {
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
 import { useTheme } from '@/theme';
-import Home from '@/screens/Home/Home';
-import Routines from '@/screens/Routines/Routines';
-import Profile from '@/screens/Profile/Profile';
+import { Home, Routines } from '@/screens';
+import ProfileNavigator from '@/navigators/ProfileNavigator';
 import { RouteProp } from '@react-navigation/native';
-import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
 import { TabBarIcon } from '@/components/organisms';
 
 type RootTabParamList = {
   Home: undefined;
   Workout: undefined;
-  Profile: undefined;
+  ProfileTab: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -59,13 +57,9 @@ function TabNavigator() {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Workout" component={Routines} />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          headerTitle: 'alex74737737',
-          headerLeft: HeaderLeftButton,
-          headerRight: HeaderRightContainer,
-        }}
+        name="ProfileTab"
+        component={ProfileNavigator}
+        options={{ title: 'Profile', headerShown: false }}
       />
     </Tab.Navigator>
   );

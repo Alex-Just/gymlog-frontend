@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 type RootTabParamList = {
   Home: undefined;
   Workout: undefined;
-  Profile: undefined;
+  ProfileTab: undefined;
 };
 
 interface ITabBarIconProps {
@@ -22,7 +22,7 @@ function TabBarIcon({ route, color, size }: ITabBarIconProps) {
     case 'Workout':
       iconName = 'dumbbell';
       break;
-    case 'Profile':
+    case 'ProfileTab':
       iconName = 'user';
       break;
     default:
