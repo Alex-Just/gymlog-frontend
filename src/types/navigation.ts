@@ -6,6 +6,11 @@ export type RootStackParamList = {
   Routines: undefined;
   Settings: undefined;
   Profile: undefined;
+  PrivacyAndSocial: undefined;
+  DefaultWorkoutVisibility: undefined;
+  Units: undefined;
+  ThemeSettings: undefined;
+  Language: undefined;
 };
 
 export type RootScreenProps<

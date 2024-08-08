@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '@/theme';
-import Card from '@/components/atoms/Card/Card';
-import { WorkoutExercise } from '@/components/atoms';
+import { WorkoutExercise, Card } from '@/components/atoms';
 import WorkoutCardHeader from '@/components/molecules/WorkoutCardHeader/WorkoutCardHeader';
 
 interface IWorkoutCardProps {

@@ -1,43 +1,76 @@
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { SettingHeader, SettingItem } from '@/components/atoms';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '@/types/navigation';
 
-function SettingsScreen() {
-  const { gutters, fonts, colors, layout, backgrounds } = useTheme();
+function Settings() {
+  const { changeTheme, variant, gutters, colors } = useTheme();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-  const settingsOptions = [
+  const accountOptions = [
     { label: 'Profile', icon: 'user' },
     { label: 'Account', icon: 'lock' },
-    { label: 'Manage Subscription', icon: 'credit-card' },
     { label: 'Notifications', icon: 'bell' },
+  ];
+
+  const preferenceOptions = [
     { label: 'Workouts', icon: 'dumbbell' },
-    { label: 'Privacy & Social', icon: 'shield-alt' },
-    { label: 'Units', icon: 'ruler' },
-    { label: 'Language', icon: 'language' },
-    { label: 'Integrations', icon: 'link' },
-    { label: 'Theme', icon: 'moon' },
+    {
+      label: 'Privacy & Social',
+      icon: 'shield-alt',
+      onPress: () => {
+        navigation.navigate('PrivacyAndSocial');
+      },
+    },
+    {
+      label: 'Units',
+      icon: 'ruler',
+      onPress: () => {
+        navigation.navigate('Units');
+      },
+    },
+    {
+      label: 'Language',
+      icon: 'language',
+      onPress: () => {
+        navigation.navigate('Language');
+      },
+    },
+    {
+      label: 'Theme',
+      icon: 'moon',
+      onPress: () => {
+        navigation.navigate('ThemeSettings');
+      },
+    },
+    {
+      label: `Toggle Theme (${variant === 'default' ? 'Light' : 'Dark'})`,
+      icon: 'adjust',
+      onPress: () => {
+        changeTheme(variant === 'default' ? 'dark' : 'default');
+      },
+    },
   ];
 
   return (
     <SafeScreen>
       <ScrollView style={{ backgroundColor: colors.background }}>
-        <View style={gutters.marginBottom_16}>
-          {settingsOptions.map((option, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                layout.row,
-                layout.itemsCenter,
-                gutters.paddingVertical_12,
-                gutters.paddingHorizontal_16,
-                backgrounds.card,
-              ]}
-            >
-              <Icon name={option.icon} size={20} color={colors.text} />
-              <Text style={[fonts.size_16, fonts.text, gutters.marginLeft_16]}>
-                {option.label}
-              </Text>
+        <View style={[gutters.marginBottom_16, gutters.marginTop_12]}>
+          <SettingHeader title="Account" />
+          {accountOptions.map(option => (
+            <SettingItem
+              key={option.label}
+              label={option.label}
+              icon={option.icon}
+            />
+          ))}
+
+          <SettingHeader title="Preferences" />
+          {preferenceOptions.map(option => (
+            <TouchableOpacity key={option.label} onPress={option.onPress}>
+              <SettingItem label={option.label} icon={option.icon} />
             </TouchableOpacity>
           ))}
         </View>
@@ -46,4 +79,4 @@ function SettingsScreen() {
   );
 }
 
-export default SettingsScreen;
+export default Settings;

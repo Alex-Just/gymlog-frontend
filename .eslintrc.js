@@ -21,6 +21,7 @@ module.exports = {
     'plugins/**/*',
     'metro.config.js',
     'react-native.config.js',
+    'i18next-scanner.config.js',
     'src/types/react-native-vector-icons.d.ts',
     '**/aider*',
   ],

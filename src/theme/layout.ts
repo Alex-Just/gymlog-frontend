@@ -59,6 +59,9 @@ export default {
   fullHeight: {
     height: '100%',
   },
+  iconSize_24: {
+    width: 24,
+  },
   /* Positions */
   relative: {
     position: 'relative',

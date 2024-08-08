@@ -13,3 +13,6 @@ export { default as Stat } from './Stat/Stat';
 export { default as UserInfo } from './UserInfo/UserInfo';
 export { default as IconButton } from './IconButton/IconButton';
 export { default as Button } from './Button/Button';
+export { default as SettingIcon } from './SettingIcon/SettingIcon';
+export { default as SettingItem } from './SettingItem/SettingItem';
+export { default as SettingHeader } from './SettingHeader/SettingHeader';

@@ -1,6 +1,11 @@
-export { default as Startup } from './Startup/Startup';
-export { default as Example } from './Example/Example';
-export { default as Routines } from './Routines/Routines';
-export { default as Profile } from './Profile/Profile';
-export { default as Settings } from './Settings/Settings';
 export { default as Home } from './Home/Home';
+export { default as Example } from './Example/Example';
+export { default as Startup } from './Startup/Startup';
+export { default as Routines } from './Routines/Routines';
+export { default as Settings } from './Settings/Settings';
+export { default as Profile } from './Profile/Profile';
+export { default as PrivacyAndSocial } from './PrivacyAndSocial/PrivacyAndSocial';
+export { default as DefaultWorkoutVisibility } from './DefaultWorkoutVisibility/DefaultWorkoutVisibility';
+export { default as Units } from './Units/Units';
+export { default as ThemeSettings } from './ThemeSettings/ThemeSettings';
+export { default as Language } from './Language/Language';

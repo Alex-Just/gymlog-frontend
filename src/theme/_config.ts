@@ -7,6 +7,7 @@ const colorsLight = {
   blue: '#0000FF',
   button: '#1E90FF',
   card: '#F0F1F5',
+  lightCard: '#f7f8fa',
   gray100: '#DFDFDF',
   gray200: '#A1A1A1',
   gray400: '#787A7B',
@@ -28,6 +29,7 @@ const colorsDark = {
   blue: '#0000FF',
   button: '#1F66E4',
   card: '#1f1f22',
+  lightCard: '#1f1f22',
   gray100: '#000000',
   gray200: '#BABABA',
   gray400: '#969696',
@@ -44,7 +46,7 @@ const colorsDark = {
   red500: '#C13333',
 } as const;
 
-const sizes = [0, 4, 6, 8, 12, 14, 16, 24, 32, 40, 80] as const;
+const sizes = [0, 4, 6, 8, 12, 14, 16, 24, 28, 32, 40, 80] as const;
 
 export const config = {
   colors: colorsLight,
@@ -71,6 +73,9 @@ export const config = {
         colors: colorsDark,
       },
       backgrounds: colorsDark,
+      borders: {
+        colors: colorsDark,
+      },
       navigationColors: {
         ...DarkTheme.colors,
         background: colorsDark.card,
