@@ -1,18 +1,21 @@
-import 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { MMKV } from 'react-native-mmkv';
+import { useEffect } from 'react';
 
+import '@/translations';
 import { ThemeProvider } from '@/theme';
 import TabNavigator from '@/navigators/TabNavigator';
-import './translations';
+import { loadSavedLanguage } from '@/utils/languageUtils';
+import { storage } from '@/utils/storage';
 
 export const queryClient = new QueryClient();
 
-export const storage = new MMKV();
-
 function App() {
+  useEffect(() => {
+    void loadSavedLanguage();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider storage={storage}>

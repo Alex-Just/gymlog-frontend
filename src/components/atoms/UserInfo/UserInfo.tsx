@@ -12,7 +12,7 @@ function UserInfo({ name }: IUserInfoProps) {
 
   return (
     <View style={[layout.flex_1, layout.justifyCenter, gutters.marginTop_8]}>
-      <Text style={[fonts.size_24, fonts.text, fonts.bold]}>{name}</Text>
+      <Text style={[fonts.size_20, fonts.text, fonts.bold]}>{name}</Text>
     </View>
   );
 }

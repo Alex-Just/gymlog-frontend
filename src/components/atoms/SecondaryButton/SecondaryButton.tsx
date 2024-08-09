@@ -29,29 +29,31 @@ function SecondaryButton({
         components.secondaryButton,
         layout.row,
         layout.itemsCenter,
-        layout.itemsStart,
         style,
       ]}
       {...props}
     >
-      {iconLeft && (
-        <View style={[layout.row, layout.itemsCenter]}>
+      <View style={[layout.row, layout.itemsCenter]}>
+        {iconLeft && (
           <Icon
             name={iconName}
-            style={[fonts.size_16, fonts.text, gutters.marginRight_8]}
+            style={[
+              fonts.size_16,
+              fonts.text,
+              gutters.marginRight_8,
+              layout.justifyCenter,
+              layout.itemsCenter,
+            ]}
           />
-          <Text style={[fonts.size_16, fonts.text]}>{label}</Text>
-        </View>
-      )}
-      {!iconLeft && (
-        <View style={[layout.row, layout.itemsCenter]}>
-          <Text style={[fonts.size_16, fonts.text]}>{label}</Text>
+        )}
+        <Text style={[fonts.size_16, fonts.text]}>{label}</Text>
+        {!iconLeft && (
           <Icon
             name={iconName}
             style={[fonts.size_16, fonts.text, gutters.marginLeft_8]}
           />
-        </View>
-      )}
+        )}
+      </View>
     </TouchableOpacity>
   );
 }

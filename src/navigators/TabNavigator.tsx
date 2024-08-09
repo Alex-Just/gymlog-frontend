@@ -7,6 +7,7 @@ import { Home, Routines } from '@/screens';
 import ProfileNavigator from '@/navigators/ProfileNavigator';
 import { RouteProp } from '@react-navigation/native';
 import { TabBarIcon } from '@/components/organisms';
+import { useTranslation } from 'react-i18next';
 
 type RootTabParamList = {
   Home: undefined;
@@ -26,6 +27,7 @@ const getScreenOptions = (
 
 function TabNavigator() {
   const { colors } = useTheme();
+  const { t } = useTranslation(['settings', 'home', 'routines']);
 
   return (
     <Tab.Navigator
@@ -54,12 +56,20 @@ function TabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Workout" component={Routines} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{ title: t('home:title') }}
+      />
+      <Tab.Screen
+        name="Workout"
+        component={Routines}
+        options={{ title: t('routines:title') }}
+      />
       <Tab.Screen
         name="ProfileTab"
         component={ProfileNavigator}
-        options={{ title: 'Profile', headerShown: false }}
+        options={{ title: t('settings:title'), headerShown: false }}
       />
     </Tab.Navigator>
   );

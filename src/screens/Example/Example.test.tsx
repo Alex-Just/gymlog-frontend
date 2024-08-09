@@ -48,7 +48,7 @@ describe('Example screen should render correctly', () => {
     expect(button).toBeDefined();
     fireEvent.press(button);
 
-    expect(i18n.language).toBe('fr');
+    expect(i18n.language).toBe('ru');
   });
 
   test('the user change the theme', () => {

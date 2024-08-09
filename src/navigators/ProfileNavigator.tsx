@@ -10,11 +10,13 @@ import {
 } from '@/screens';
 import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
 import { useTheme } from '@/theme';
+import { useTranslation } from 'react-i18next';
 
 const Stack = createStackNavigator();
 
 function ProfileNavigator() {
   const { colors, fonts } = useTheme();
+  const { t } = useTranslation(['settings']);
 
   const commonHeaderOptions = {
     headerBackTitleVisible: false,
@@ -40,7 +42,7 @@ function ProfileNavigator() {
         options={{
           headerLeft: HeaderLeftButton,
           headerRight: HeaderRightContainer,
-          headerTitle: 'Profile',
+          headerTitle: t('settings:profile'),
           ...commonHeaderOptions,
         }}
       />
@@ -48,7 +50,7 @@ function ProfileNavigator() {
         name="Settings"
         component={Settings}
         options={{
-          headerTitle: 'Settings',
+          headerTitle: t('settings:settings'),
           ...commonHeaderOptions,
         }}
       />
@@ -56,7 +58,7 @@ function ProfileNavigator() {
         name="PrivacyAndSocial"
         component={PrivacyAndSocial}
         options={{
-          headerTitle: 'Privacy & Social',
+          headerTitle: t('settings:privacyAndSocial'),
           ...commonHeaderOptions,
         }}
       />
@@ -64,7 +66,7 @@ function ProfileNavigator() {
         name="DefaultWorkoutVisibility"
         component={DefaultWorkoutVisibility}
         options={{
-          headerTitle: 'Default Workout Visibility',
+          headerTitle: t('settings:defaultWorkoutVisibility'),
           ...commonHeaderOptions,
         }}
       />
@@ -72,7 +74,7 @@ function ProfileNavigator() {
         name="Units"
         component={Units}
         options={{
-          headerTitle: 'Select Units',
+          headerTitle: t('settings:units'),
           ...commonHeaderOptions,
         }}
       />
@@ -80,7 +82,7 @@ function ProfileNavigator() {
         name="ThemeSettings"
         component={ThemeSettings}
         options={{
-          headerTitle: 'Select Theme',
+          headerTitle: t('settings:theme'),
           ...commonHeaderOptions,
         }}
       />
@@ -88,7 +90,7 @@ function ProfileNavigator() {
         name="Language"
         component={Language}
         options={{
-          headerTitle: 'Select App Language',
+          headerTitle: t('settings:language'),
           ...commonHeaderOptions,
         }}
       />

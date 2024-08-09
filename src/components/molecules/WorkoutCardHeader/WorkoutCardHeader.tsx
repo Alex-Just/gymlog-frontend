@@ -2,6 +2,8 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useTheme } from '@/theme';
+import { useTranslation } from 'react-i18next';
+import { formatDateToHumanReadable } from '@/utils/dateUtils';
 
 interface IWorkoutCardHeaderProps {
   avatar: string;
@@ -18,6 +20,9 @@ const styles = StyleSheet.create({
 
 function WorkoutCardHeader({ avatar, name, date }: IWorkoutCardHeaderProps) {
   const { fonts, layout, colors, gutters, borders } = useTheme();
+  const { t } = useTranslation(['workoutCardHeader']);
+
+  const formattedDate = formatDateToHumanReadable(date);
 
   return (
     <View
@@ -43,7 +48,8 @@ function WorkoutCardHeader({ avatar, name, date }: IWorkoutCardHeaderProps) {
               gutters.marginTop_4,
             ]}
           >
-            {date} <Icon name="lock" size={12} color="#aaa" /> Only you
+            {formattedDate} <Icon name="lock" size={12} color="#aaa" />{' '}
+            {t('workoutCardHeader:onlyYou')}
           </Text>
         </View>
       </View>

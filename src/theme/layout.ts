@@ -25,6 +25,9 @@ export default {
   itemsStretch: {
     alignItems: 'stretch',
   },
+  wrapText: {
+    flexWrap: 'wrap',
+  },
   itemsEnd: {
     alignItems: 'flex-end',
   },

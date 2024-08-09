@@ -5,13 +5,8 @@ import * as en from './en';
 import * as es from './es';
 import * as ru from './ru';
 
-type TupleUnion<U extends string, R extends unknown[] = []> = {
-  [S in U]: Exclude<U, S> extends never
-    ? [...R, S]
-    : TupleUnion<Exclude<U, S>, [...R, S]>;
-}[U];
-
-const ns = Object.keys(en) as TupleUnion<keyof typeof en>;
+const nsKeys = Object.keys(en) as Array<keyof typeof en>;
+const ns = nsKeys.reduce((acc, key) => acc.concat(key), [] as string[]);
 
 export const defaultNS = ns[0];
 

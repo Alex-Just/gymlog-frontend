@@ -3,6 +3,7 @@ import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { storage } from '@/utils/storage';
 
 const languages = [
   { label: 'English', value: 'en' },
@@ -19,6 +20,7 @@ function Language() {
 
   const onChangeLanguage = (lang: LanguageCode) => {
     void i18next.changeLanguage(lang);
+    storage.set('selectedLanguage', lang);
   };
 
   return (

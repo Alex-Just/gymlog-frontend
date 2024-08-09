@@ -1,0 +1,11 @@
+{
+  "title": "Routines",
+  "quickStart": "Quick Start",
+  "startEmptyWorkout": "Start Empty Workout",
+  "newRoutine": "New Routine",
+  "explore": "Explore",
+  "myRoutines": "My Routines ({{count}})",
+  "exercises": "Calf Press (Machine), Squat (Barbell), Lat Pulldown (Cable), Bench Press (Barbell)",
+  "startRoutine": "Start Routine",
+  "workout": "Workout"
+}

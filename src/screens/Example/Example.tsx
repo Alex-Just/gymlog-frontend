@@ -57,7 +57,7 @@ function Example() {
     changeTheme(variant === 'default' ? 'dark' : 'default');
   };
 
-  const onChangeLanguage = (lang: 'fr' | 'en') => {
+  const onChangeLanguage = (lang: 'es' | 'en' | 'ru') => {
     void i18next.changeLanguage(lang);
   };
 
@@ -148,7 +148,7 @@ function Example() {
               testID="change-language-button"
               style={[components.buttonCircle, gutters.marginBottom_16]}
               onPress={() =>
-                onChangeLanguage(i18next.language === 'fr' ? 'en' : 'fr')
+                onChangeLanguage(i18next.language === 'ru' ? 'en' : 'ru')
               }
             >
               <ImageVariant

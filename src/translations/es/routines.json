@@ -1,0 +1,11 @@
+{
+  "title": "Rutinas",
+  "quickStart": "Inicio Rápido",
+  "startEmptyWorkout": "Comenzar Entrenamiento Vacío",
+  "newRoutine": "Nueva Rutina",
+  "explore": "Explorar",
+  "myRoutines": "Mis Rutinas ({{count}})",
+  "exercises": "Prensa de Pantorrillas (Máquina), Sentadilla (Barra), Jalón de Espalda (Cable), Press de Banca (Barra)",
+  "startRoutine": "Comenzar Rutina",
+  "workout": "Entrenamiento"
+}

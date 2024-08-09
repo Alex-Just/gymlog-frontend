@@ -6,9 +6,11 @@ import { SettingItem } from '@/components/atoms';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '@/types/navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useTranslation } from 'react-i18next';
 
 function PrivacyAndSocial() {
   const { gutters, colors, fonts, layout } = useTheme();
+  const { t } = useTranslation(['settings']);
   const [isPrivateProfile, setIsPrivateProfile] = useState(false);
   const [hideSuggestedUsers, setHideSuggestedUsers] = useState(false);
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -18,9 +20,9 @@ function PrivacyAndSocial() {
       <ScrollView style={{ backgroundColor: colors.background }}>
         <View style={[gutters.marginBottom_16, gutters.marginTop_12]}>
           <SettingItem
-            label="Private Profile"
+            label={t('settings:privateProfile')}
             icon="lock"
-            description="Having a private profile means other users need to request to follow you. Only if you accept their follow request, will they be able to see your workouts."
+            description={t('settings:privateProfileDescription')}
             noBorder
           >
             <Switch
@@ -31,9 +33,9 @@ function PrivacyAndSocial() {
           </SettingItem>
 
           <SettingItem
-            label="Hide Suggested Users"
+            label={t('settings:hideSuggestedUsers')}
             icon="user-slash"
-            description="Enabling this will remove the suggested user section from your feed."
+            description={t('settings:hideSuggestedUsersDescription')}
             noBorder
           >
             <Switch
@@ -48,15 +50,17 @@ function PrivacyAndSocial() {
             onPress={() => navigation.navigate('DefaultWorkoutVisibility')}
           >
             <SettingItem
-              label="Default Workout Visibility"
+              label={t('settings:defaultWorkoutVisibility')}
               icon="eye-slash"
-              description="Set the default workout visibility for new workouts. You can change it for specific workouts when saving them. It does not affect existing workouts retroactively."
+              description={t('settings:defaultWorkoutVisibilityDescription')}
               noBorder
             >
               <View
                 style={[layout.row, layout.itemsCenter, gutters.marginLeft_12]}
               >
-                <Text style={[fonts.size_16, fonts.text]}>Private</Text>
+                <Text style={[fonts.size_16, fonts.text]}>
+                  {t('settings:private')}
+                </Text>
                 <Icon
                   name="angle-right"
                   size={24}

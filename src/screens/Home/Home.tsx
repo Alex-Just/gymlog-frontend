@@ -1,47 +1,61 @@
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, ActivityIndicator, Text } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
 import { WorkoutCard } from '@/components/molecules';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
-const workoutData = [
-  {
-    id: 1,
-    avatar: 'https://i.pravatar.cc/150?img=3',
-    name: 'alex74737737',
-    date: 'Wednesday, Jul 31, 2024',
-    title: 'Full Body 1',
-    time: '2h 0min',
-    volume: '23,016 kg',
-    exercises: [
-      { id: 1, name: '5 sets Calf Press (Machine)' },
-      { id: 2, name: '5 sets Squat (Barbell)' },
-      { id: 3, name: '5 sets Lat Pulldown (Cable)' },
-    ],
-  },
-  {
-    id: 2,
-    avatar: 'https://i.pravatar.cc/150?img=3',
-    name: 'alex74737737',
-    date: 'Saturday, Jul 20, 2024',
-    title: 'Full Body 1',
-    time: '2h 2min',
-    volume: '23,496 kg',
-    exercises: [
-      { id: 1, name: '5 sets Calf Press (Machine)' },
-      { id: 2, name: '5 sets Squat (Barbell)' },
-      { id: 3, name: '5 sets Lat Pulldown (Cable)' },
-    ],
-  },
-];
+import { useNavigation } from '@react-navigation/native';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { fetchAllWorkouts, Workout } from '@/services/workouts/fetchAll';
 
 function HomeScreen() {
-  const { gutters, colors } = useTheme();
+  const { gutters, colors, fonts, backgrounds } = useTheme();
+  const { t } = useTranslation(['home', 'common']);
+  const navigation = useNavigation();
+
+  const {
+    data: workoutData,
+    isLoading,
+    isError,
+  }: UseQueryResult<Workout[]> = useQuery({
+    queryKey: ['workouts'],
+    queryFn: fetchAllWorkouts,
+  });
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: t('home:title'),
+    });
+  }, [navigation, t]);
+
+  if (isLoading) {
+    return (
+      <SafeScreen>
+        <ActivityIndicator
+          testID="loading-indicator"
+          size="large"
+          color={colors.primaryBtnBg}
+        />
+      </SafeScreen>
+    );
+  }
+
+  if (isError) {
+    return (
+      <SafeScreen>
+        <Text testID="error-message" style={[fonts.size_16, fonts.red500]}>
+          {t('common:error')}
+        </Text>
+      </SafeScreen>
+    );
+  }
 
   return (
     <SafeScreen>
-      <ScrollView style={{ backgroundColor: colors.background }}>
+      <ScrollView style={[backgrounds.background]}>
         <View style={[gutters.paddingTop_16]}>
-          {workoutData.map(workout => (
+          {workoutData?.map(workout => (
             <WorkoutCard key={workout.id} {...workout} />
           ))}
         </View>

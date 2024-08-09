@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '@/theme';
 import { WorkoutExercise, Card } from '@/components/atoms';
 import WorkoutCardHeader from '@/components/molecules/WorkoutCardHeader/WorkoutCardHeader';
+import { useTranslation } from 'react-i18next';
 
 interface IWorkoutCardProps {
   avatar: string;
@@ -24,6 +25,7 @@ function WorkoutCard({
   exercises,
 }: IWorkoutCardProps) {
   const { layout, fonts, gutters } = useTheme();
+  const { t } = useTranslation(['workoutCard']);
 
   return (
     <Card>
@@ -38,19 +40,25 @@ function WorkoutCard({
         ]}
       >
         <View>
-          <Text style={[fonts.size_14, fonts.gray400]}>Time</Text>
+          <Text style={[fonts.size_14, fonts.gray400]}>
+            {t('workoutCard:time')}
+          </Text>
           <Text style={[fonts.size_16, fonts.text, gutters.marginTop_4]}>
             {time}
           </Text>
         </View>
         <View>
-          <Text style={[fonts.size_14, fonts.gray400]}>Volume</Text>
+          <Text style={[fonts.size_14, fonts.gray400]}>
+            {t('workoutCard:volume')}
+          </Text>
           <Text style={[fonts.size_16, fonts.text, gutters.marginTop_4]}>
             {volume}
           </Text>
         </View>
       </View>
-      <Text style={[fonts.size_16, fonts.gray400]}>Workout</Text>
+      <Text style={[fonts.size_16, fonts.gray400]}>
+        {t('workoutCard:workout')}
+      </Text>
       <View>
         {exercises.map(exercise => (
           <WorkoutExercise key={exercise.id} exerciseName={exercise.name} />
@@ -58,12 +66,16 @@ function WorkoutCard({
       </View>
       <TouchableOpacity>
         <Text style={[fonts.size_14, fonts.primaryBtnBg, gutters.marginTop_8]}>
-          See 5 more exercises
+          {t('workoutCard:seeMoreExercises', { count: 5 })}
         </Text>
       </TouchableOpacity>
       <View style={[layout.row, layout.justifyBetween, gutters.marginTop_14]}>
-        <Text style={[fonts.size_14, fonts.gray400]}>0 likes</Text>
-        <Text style={[fonts.size_14, fonts.gray400]}>0 comments</Text>
+        <Text style={[fonts.size_14, fonts.gray400]}>
+          {t('workoutCard:likes', { count: 0 })}
+        </Text>
+        <Text style={[fonts.size_14, fonts.gray400]}>
+          {t('workoutCard:comments', { count: 0 })}
+        </Text>
       </View>
     </Card>
   );

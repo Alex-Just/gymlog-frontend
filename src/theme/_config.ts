@@ -46,7 +46,7 @@ const colorsDark = {
   red500: '#C13333',
 } as const;
 
-const sizes = [0, 4, 6, 8, 12, 14, 16, 24, 28, 32, 40, 80] as const;
+const sizes = [0, 4, 6, 8, 12, 14, 16, 20, 24, 28, 32, 40, 80] as const;
 
 export const config = {
   colors: colorsLight,

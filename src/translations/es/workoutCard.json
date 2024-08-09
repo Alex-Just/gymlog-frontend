@@ -1,0 +1,8 @@
+{
+  "time": "Tiempo",
+  "volume": "Volumen",
+  "workout": "Entrenamiento",
+  "seeMoreExercises": "Ver {count} más ejercicios",
+  "likes": "{count} me gusta",
+  "comments": "{count} comentarios"
+}

@@ -1,66 +1,54 @@
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@/theme';
 import { SafeScreen } from '@/components/template';
 import { ProfileHeader, WorkoutCard } from '@/components/molecules';
-
-interface IExercise {
-  id: number;
-  name: string;
-}
-
-interface IWorkout {
-  id: number;
-  avatar: string;
-  name: string;
-  date: string;
-  title: string;
-  time: string;
-  volume: string;
-  exercises: IExercise[];
-}
-
-const workoutData: IWorkout[] = [
-  {
-    id: 1,
-    avatar: 'https://i.pravatar.cc/150?img=3',
-    name: 'alex74737737',
-    date: 'Wednesday, Jul 31, 2024',
-    title: 'Full Body 1',
-    time: '2h 0min',
-    volume: '23,016 kg',
-    exercises: [
-      { id: 1, name: '5 sets Calf Press (Machine)' },
-      { id: 2, name: '5 sets Squat (Barbell)' },
-      { id: 3, name: '5 sets Lat Pulldown (Cable)' },
-    ],
-  },
-  {
-    id: 2,
-    avatar: 'https://i.pravatar.cc/150?img=3',
-    name: 'alex74737737',
-    date: 'Saturday, Jul 20, 2024',
-    title: 'Full Body 1',
-    time: '2h 2min',
-    volume: '23,496 kg',
-    exercises: [
-      { id: 1, name: '5 sets Calf Press (Machine)' },
-      { id: 2, name: '5 sets Squat (Barbell)' },
-      { id: 3, name: '5 sets Lat Pulldown (Cable)' },
-    ],
-  },
-];
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { fetchAllWorkouts, Workout } from '@/services/workouts/fetchAll';
+import { useTranslation } from 'react-i18next';
 
 function Profile() {
-  const { gutters, colors, fonts } = useTheme();
+  const { gutters, colors, fonts, backgrounds } = useTheme();
+  const { t } = useTranslation();
+
+  const {
+    data: workoutData,
+    isLoading,
+    isError,
+  }: UseQueryResult<Workout[]> = useQuery({
+    queryKey: ['workouts'],
+    queryFn: fetchAllWorkouts,
+  });
+
+  if (isLoading) {
+    return (
+      <SafeScreen>
+        <ActivityIndicator
+          testID="loading-indicator"
+          size="large"
+          color={colors.primaryBtnBg}
+        />
+      </SafeScreen>
+    );
+  }
+
+  if (isError) {
+    return (
+      <SafeScreen>
+        <Text testID="error-message" style={[fonts.size_16, fonts.red500]}>
+          {t('common:error')}
+        </Text>
+      </SafeScreen>
+    );
+  }
 
   return (
     <SafeScreen>
-      <ScrollView style={{ backgroundColor: colors.background }}>
+      <ScrollView style={[backgrounds.background]}>
         <View>
           <ProfileHeader
             avatarUri="https://i.pravatar.cc/150?img=3"
             name="Alex"
-            workouts={81}
+            workouts={workoutData?.length || 0}
             followers={0}
             following={0}
           />
@@ -73,9 +61,9 @@ function Profile() {
             gutters.marginTop_16,
           ]}
         >
-          Workouts
+          {t('profile:workouts')}
         </Text>
-        {workoutData.map(workout => (
+        {workoutData?.map((workout: Workout) => (
           <WorkoutCard key={workout.id} {...workout} />
         ))}
       </ScrollView>

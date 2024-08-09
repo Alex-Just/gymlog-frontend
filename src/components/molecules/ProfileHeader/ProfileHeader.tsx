@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Avatar, UserInfo, Counter } from '@/components/atoms';
 import { useTheme } from '@/theme';
+import { useTranslation } from 'react-i18next';
 
 interface ProfileHeaderProps {
   avatarUri: string;
@@ -19,16 +20,17 @@ function ProfileHeader({
   following,
 }: ProfileHeaderProps) {
   const { layout, gutters } = useTheme();
+  const { t } = useTranslation('profile');
 
   return (
     <View style={[layout.row, layout.justifyCenter, gutters.marginTop_16]}>
       <Avatar source={{ uri: avatarUri }} />
       <View style={[layout.flex_1]}>
         <UserInfo name={name} />
-        <View style={[layout.row, gutters.marginTop_12]}>
-          <Counter label="Workouts" value={workouts} />
-          <Counter label="Followers" value={followers} />
-          <Counter label="Following" value={following} />
+        <View style={[layout.row, layout.justifyBetween, gutters.marginTop_12]}>
+          <Counter label={t('workouts')} value={workouts} />
+          <Counter label={t('followers')} value={followers} />
+          <Counter label={t('following')} value={following} />
         </View>
       </View>
     </View>

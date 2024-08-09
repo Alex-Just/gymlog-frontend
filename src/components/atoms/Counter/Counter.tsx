@@ -12,14 +12,12 @@ function Counter({ label, value }: ICounterProps) {
 
   return (
     <View
-      style={[
-        layout.itemsStart,
-        gutters.marginRight_16,
-        gutters.marginBottom_12,
-      ]}
+      style={[layout.flex_1, gutters.marginRight_8, gutters.marginBottom_12]}
     >
-      <Text style={[fonts.size_14, fonts.gray400]}>{label}</Text>
-      <Text style={[fonts.size_16, fonts.text]}>{value}</Text>
+      <Text style={[fonts.size_12, fonts.gray400, layout.wrapText]}>
+        {label}
+      </Text>
+      <Text style={[fonts.size_14, fonts.text]}>{value}</Text>
     </View>
   );
 }

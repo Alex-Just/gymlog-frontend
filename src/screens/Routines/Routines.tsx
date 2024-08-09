@@ -1,5 +1,6 @@
 import { View, ScrollView, ActivityIndicator } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { SafeScreen } from '@/components/template';
 import { fetchAll } from '@/services/routines';
 import { useTheme } from '@/theme';
@@ -16,6 +17,7 @@ import {
 import { ButtonGroup } from '@/components/molecules';
 
 function Routines() {
+  const { t } = useTranslation(['routines']);
   const { changeTheme, variant, layout, gutters, colors } = useTheme();
   const { isLoading, data } = useQuery<Routine[]>({
     queryKey: ['routines'],
@@ -34,9 +36,14 @@ function Routines() {
           /* Handle three-dot menu action */
         }}
       />
-      <CardSubtitle subtitle="Calf Press (Machine), Squat (Barbell), Lat Pulldown (Cable), Bench Press (Barbell)" />
+      <CardSubtitle
+        subtitle={t('routines:exercises', {
+          defaultValue:
+            'Calf Press (Machine), Squat (Barbell), Lat Pulldown (Cable), Bench Press (Barbell)',
+        })}
+      />
       <PrimaryButton
-        label={`Start Routine (${variant})`}
+        label={t('routines:startRoutine')}
         onPress={onChangeTheme}
       />
     </Card>
@@ -45,10 +52,13 @@ function Routines() {
   return (
     <SafeScreen>
       <ScrollView style={{ backgroundColor: colors.background }}>
-        <SectionHeader title="Quick Start" />
-        <SecondaryButton label="Start Empty Workout" iconName="plus" />
+        <SectionHeader title={t('routines:quickStart')} />
+        <SecondaryButton
+          label={t('routines:startEmptyWorkout')}
+          iconName="plus"
+        />
         <SectionHeader
-          title="Routines"
+          title={t('routines:title')}
           iconName="folder-plus"
           onIconPress={() => {
             /* Add new routine action */
@@ -56,19 +66,19 @@ function Routines() {
         />
         <ButtonGroup>
           <SecondaryButton
-            label="New Routine"
+            label={t('routines:newRoutine')}
             iconName="clipboard"
             iconLeft
             style={layout.flex_1}
           />
           <SecondaryButton
-            label="Explore"
+            label={t('routines:explore')}
             iconName="search"
             iconLeft
             style={layout.flex_1}
           />
         </ButtonGroup>
-        <Collapsible title="My Routines (1)">
+        <Collapsible title={t('routines:myRoutines', { count: 1 })}>
           {isLoading ? (
             <ActivityIndicator
               style={gutters.marginTop_32}

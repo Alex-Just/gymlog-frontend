@@ -1,0 +1,8 @@
+{
+  "time": "Time",
+  "volume": "Volume",
+  "workout": "Workout",
+  "seeMoreExercises": "See {count} more exercises",
+  "likes": "{count} likes",
+  "comments": "{count} comments"
+}

@@ -5,7 +5,9 @@ import {
   reactotronReactQuery,
 } from 'reactotron-react-query';
 
-import { storage, queryClient } from './App';
+import { storage } from '@/utils/storage';
+
+import { queryClient } from './App';
 import config from '../app.json';
 
 const queryClientManager = new QueryClientManager({

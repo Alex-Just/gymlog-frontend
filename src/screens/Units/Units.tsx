@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
+import { useTranslation } from 'react-i18next';
 
 function Units() {
   const { layout, gutters, fonts, colors } = useTheme();
+  const { t } = useTranslation(['settings']);
   const [weightUnit, setWeightUnit] = useState('kg');
   const [distanceUnit, setDistanceUnit] = useState('kilometers');
   const [measurementUnit, setMeasurementUnit] = useState('cm');
@@ -51,35 +53,40 @@ function Units() {
             fonts.gray400,
           ]}
         >
-          Weight
+          {t('settings:weight')}
         </Text>
         <View style={[layout.row, gutters.marginBottom_16]}>
-          {renderUnitOption('kg', 'kg', weightUnit, () => setWeightUnit('kg'))}
-          {renderUnitOption('lbs', 'lbs', weightUnit, () =>
+          {renderUnitOption(t('settings:kg'), 'kg', weightUnit, () =>
+            setWeightUnit('kg'),
+          )}
+          {renderUnitOption(t('settings:lbs'), 'lbs', weightUnit, () =>
             setWeightUnit('lbs'),
           )}
         </View>
 
         <Text style={[fonts.size_16, gutters.marginBottom_8, fonts.gray400]}>
-          Distance
+          {t('settings:distance')}
         </Text>
         <View style={[layout.row, gutters.marginBottom_16]}>
-          {renderUnitOption('kilometers', 'kilometers', distanceUnit, () =>
-            setDistanceUnit('kilometers'),
+          {renderUnitOption(
+            t('settings:kilometers'),
+            'kilometers',
+            distanceUnit,
+            () => setDistanceUnit('kilometers'),
           )}
-          {renderUnitOption('miles', 'miles', distanceUnit, () =>
+          {renderUnitOption(t('settings:miles'), 'miles', distanceUnit, () =>
             setDistanceUnit('miles'),
           )}
         </View>
 
         <Text style={[fonts.size_16, gutters.marginBottom_8, fonts.gray400]}>
-          Body Measurements
+          {t('settings:bodyMeasurements')}
         </Text>
         <View style={[layout.row, gutters.marginBottom_16]}>
-          {renderUnitOption('cm', 'cm', measurementUnit, () =>
+          {renderUnitOption(t('settings:cm'), 'cm', measurementUnit, () =>
             setMeasurementUnit('cm'),
           )}
-          {renderUnitOption('in', 'in', measurementUnit, () =>
+          {renderUnitOption(t('settings:in'), 'in', measurementUnit, () =>
             setMeasurementUnit('in'),
           )}
         </View>
