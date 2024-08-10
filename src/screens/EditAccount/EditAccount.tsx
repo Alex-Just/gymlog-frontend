@@ -31,7 +31,7 @@ function EditAccount() {
       label: t('updatePassword'),
       icon: 'lock',
       onPress: () => {
-        /* Navigate to Update Password */
+        navigation.navigate('ChangePassword');
       },
     },
   ];

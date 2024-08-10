@@ -12,3 +12,4 @@ export { default as editProfile } from './editProfile.json';
 export { default as editAccount } from './editAccount.json';
 export { default as changeUsername } from './changeUsername.json';
 export { default as changeEmail } from './changeEmail.json';
+export { default as changePassword } from './changePassword.json';
