@@ -3,17 +3,21 @@ import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
 import { SettingItem } from '@/components/atoms';
 import { useTranslation } from 'react-i18next';
+import { RootStackParamList } from '@/types/navigation';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 function EditAccount() {
   const { gutters, layout, fonts } = useTheme();
   const { t } = useTranslation(['editAccount']);
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const accountOptions = [
     {
       label: t('changeUsername'),
       icon: 'user',
       onPress: () => {
-        /* Navigate to Change Username */
+        navigation.navigate('ChangeUsername');
       },
     },
     {

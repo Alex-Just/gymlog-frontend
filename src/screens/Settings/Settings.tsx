@@ -23,7 +23,7 @@ function Settings() {
       label: t('account'),
       icon: 'lock',
       onPress: () => {
-        navigation.navigate('Account');
+        navigation.navigate('EditAccount');
       },
     },
     { label: t('notifications'), icon: 'bell' },
