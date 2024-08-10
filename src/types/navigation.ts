@@ -16,6 +16,7 @@ export type RootStackParamList = {
   ChangeUsername: undefined;
   ChangeEmail: undefined;
   ChangePassword: undefined;
+  EditNotifications: undefined;
 };
 
 export type RootScreenProps<

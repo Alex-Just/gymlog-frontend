@@ -26,7 +26,13 @@ function Settings() {
         navigation.navigate('EditAccount');
       },
     },
-    { label: t('notifications'), icon: 'bell' },
+    {
+      label: t('notifications'),
+      icon: 'bell',
+      onPress: () => {
+        navigation.navigate('EditNotifications');
+      },
+    },
   ];
 
   const preferenceOptions = [

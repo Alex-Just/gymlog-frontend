@@ -13,3 +13,4 @@ export { default as editAccount } from './editAccount.json';
 export { default as changeUsername } from './changeUsername.json';
 export { default as changeEmail } from './changeEmail.json';
 export { default as changePassword } from './changePassword.json';
+export { default as editNotifications } from './editNotifications.json';

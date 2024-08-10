@@ -12,6 +12,7 @@ import {
   ChangeUsername,
   ChangeEmail,
   ChangePassword,
+  EditNotifications,
 } from '@/screens';
 import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
 import { useTheme } from '@/theme';
@@ -28,6 +29,7 @@ function ProfileNavigator() {
     'changeUsername',
     'changeEmail',
     'changePassword',
+    'editNotifications',
   ]);
 
   const commonHeaderOptions = {
@@ -143,6 +145,14 @@ function ProfileNavigator() {
         component={ChangePassword}
         options={{
           headerTitle: t('changePassword:title'),
+          ...commonHeaderOptions,
+        }}
+      />
+      <Stack.Screen
+        name="EditNotifications"
+        component={EditNotifications}
+        options={{
+          headerTitle: t('editNotifications:title'),
           ...commonHeaderOptions,
         }}
       />
