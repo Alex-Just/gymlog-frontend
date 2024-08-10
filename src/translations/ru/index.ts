@@ -9,3 +9,4 @@ export { default as workoutCard } from './workoutCard.json';
 export { default as workoutCardHeader } from './workoutCardHeader.json';
 export { default as profile } from './profile.json';
 export { default as editProfile } from './editProfile.json';
+export { default as editAccount } from './editAccount.json';

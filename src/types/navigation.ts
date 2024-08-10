@@ -12,6 +12,7 @@ export type RootStackParamList = {
   ThemeSettings: undefined;
   Language: undefined;
   EditProfile: undefined;
+  Account: undefined;
 };
 
 export type RootScreenProps<

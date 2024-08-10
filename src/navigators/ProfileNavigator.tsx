@@ -8,6 +8,7 @@ import {
   ThemeSettings,
   Language,
   EditProfile,
+  Account,
 } from '@/screens';
 import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
 import { useTheme } from '@/theme';
@@ -17,7 +18,7 @@ const Stack = createStackNavigator();
 
 function ProfileNavigator() {
   const { colors, fonts } = useTheme();
-  const { t } = useTranslation(['settings', 'profile']);
+  const { t } = useTranslation(['settings', 'profile', 'editAccount']);
 
   const commonHeaderOptions = {
     headerBackTitleVisible: false,
@@ -100,6 +101,14 @@ function ProfileNavigator() {
         component={EditProfile}
         options={{
           headerTitle: t('profile:editProfile'),
+          ...commonHeaderOptions,
+        }}
+      />
+      <Stack.Screen
+        name="Account"
+        component={Account}
+        options={{
+          headerTitle: t('editAccount:title'),
           ...commonHeaderOptions,
         }}
       />

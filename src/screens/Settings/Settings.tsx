@@ -19,7 +19,13 @@ function Settings() {
         navigation.navigate('EditProfile');
       },
     },
-    { label: t('account'), icon: 'lock' },
+    {
+      label: t('account'),
+      icon: 'lock',
+      onPress: () => {
+        navigation.navigate('Account');
+      },
+    },
     { label: t('notifications'), icon: 'bell' },
   ];
 
