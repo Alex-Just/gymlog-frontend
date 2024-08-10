@@ -12,3 +12,4 @@ export { default as Language } from './Language/Language';
 export { default as EditProfile } from './EditProfile/EditProfile';
 export { default as EditAccount } from './EditAccount/EditAccount';
 export { default as ChangeUsername } from './ChangeUsername/ChangeUsername';
+export { default as ChangeEmail } from './ChangeEmail/ChangeEmail';

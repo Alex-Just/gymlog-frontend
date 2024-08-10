@@ -11,3 +11,4 @@ export { default as profile } from './profile.json';
 export { default as editProfile } from './editProfile.json';
 export { default as editAccount } from './editAccount.json';
 export { default as changeUsername } from './changeUsername.json';
+export { default as changeEmail } from './changeEmail.json';

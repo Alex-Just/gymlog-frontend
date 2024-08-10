@@ -3,21 +3,21 @@ import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
 import { useTranslation } from 'react-i18next';
 
-function ChangeUsername() {
+function ChangeEmail() {
   const { gutters, layout, fonts, colors, backgrounds, borders } = useTheme();
-  const { t } = useTranslation(['changeUsername']);
+  const { t } = useTranslation(['changeEmail']);
 
   return (
     <SafeScreen>
       <Text
         style={[fonts.size_16, gutters.marginBottom_8, gutters.marginTop_14]}
       >
-        {t('newUsername')}
+        {t('newEmail')}
       </Text>
       <TextInput
-        placeholder="Username"
+        placeholder="Email"
         placeholderTextColor={colors.gray400}
-        defaultValue="alex74737737"
+        defaultValue="h7h2vc@gmail.com"
         style={[
           fonts.size_16,
           backgrounds.lightCard,
@@ -43,4 +43,4 @@ function ChangeUsername() {
   );
 }
 
-export default ChangeUsername;
+export default ChangeEmail;

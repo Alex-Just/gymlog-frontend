@@ -24,7 +24,7 @@ function EditAccount() {
       label: t('changeEmail'),
       icon: 'envelope',
       onPress: () => {
-        /* Navigate to Change Email */
+        navigation.navigate('ChangeEmail');
       },
     },
     {

@@ -14,6 +14,7 @@ export type RootStackParamList = {
   EditProfile: undefined;
   EditAccount: undefined;
   ChangeUsername: undefined;
+  ChangeEmail: undefined;
 };
 
 export type RootScreenProps<
