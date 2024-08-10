@@ -1,0 +1,13 @@
+{
+  "changePicture": "Change Picture",
+  "name": "Name",
+  "bio": "Describe yourself",
+  "link": "Link",
+  "save": "Save",
+  "publicProfile": "Public Profile",
+  "privateData": "Private Data",
+  "sex": "Sex",
+  "male": "Male",
+  "birthday": "Birthday",
+  "sampleDate": "Jan 1, 1986"
+}

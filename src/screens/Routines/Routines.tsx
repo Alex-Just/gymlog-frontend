@@ -58,7 +58,7 @@ function Routines() {
           iconName="plus"
         />
         <SectionHeader
-          title={t('routines:title')}
+          title={t('routines:routines')}
           iconName="folder-plus"
           onIconPress={() => {
             /* Add new routine action */

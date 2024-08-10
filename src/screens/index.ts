@@ -9,3 +9,4 @@ export { default as DefaultWorkoutVisibility } from './DefaultWorkoutVisibility/
 export { default as Units } from './Units/Units';
 export { default as ThemeSettings } from './ThemeSettings/ThemeSettings';
 export { default as Language } from './Language/Language';
+export { default as EditProfile } from './EditProfile/EditProfile';

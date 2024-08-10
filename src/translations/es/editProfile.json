@@ -1,0 +1,13 @@
+{
+  "changePicture": "Cambiar foto",
+  "name": "Nombre",
+  "bio": "Descríbete",
+  "link": "Enlace",
+  "save": "Guardar",
+  "publicProfile": "Perfil Público",
+  "privateData": "Datos Privados",
+  "sex": "Sexo",
+  "male": "Hombre",
+  "birthday": "Cumpleaños",
+  "sampleDate": "1 de Enero de 1986"
+}

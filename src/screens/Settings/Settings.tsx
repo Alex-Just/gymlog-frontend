@@ -12,7 +12,13 @@ function Settings() {
   const { t } = useTranslation(['settings']);
 
   const accountOptions = [
-    { label: t('profile'), icon: 'user' },
+    {
+      label: t('profile'),
+      icon: 'user',
+      onPress: () => {
+        navigation.navigate('EditProfile');
+      },
+    },
     { label: t('account'), icon: 'lock' },
     { label: t('notifications'), icon: 'bell' },
   ];
@@ -64,11 +70,9 @@ function Settings() {
         <View style={[gutters.marginBottom_16, gutters.marginTop_12]}>
           <SettingHeader title={t('account')} />
           {accountOptions.map(option => (
-            <SettingItem
-              key={option.label}
-              label={option.label}
-              icon={option.icon}
-            />
+            <TouchableOpacity key={option.label} onPress={option.onPress}>
+              <SettingItem label={option.label} icon={option.icon} />
+            </TouchableOpacity>
           ))}
 
           <SettingHeader title={t('preferences')} />

@@ -7,5 +7,6 @@
   "myRoutines": "Mis Rutinas ({{count}})",
   "exercises": "Prensa de Pantorrillas (Máquina), Sentadilla (Barra), Jalón de Espalda (Cable), Press de Banca (Barra)",
   "startRoutine": "Comenzar Rutina",
-  "workout": "Entrenamiento"
+  "workout": "Entrenamiento",
+  "routines": "Rutinas"
 }
