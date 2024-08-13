@@ -1,21 +1,53 @@
-import { Image, ImageProps, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+import { Image, StyleSheet, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
+type AvatarProps = {
+  uri?: string;
+  size?: number;
+  iconSize?: number;
+  iconColor?: string;
+};
 
 const styles = StyleSheet.create({
-  avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0f0f0',
     marginRight: 16,
+  },
+  image: {
+    resizeMode: 'cover',
   },
 });
 
-function Avatar(props: ImageProps) {
-  return <Image style={styles.avatar} {...props} />;
-}
+function Avatar({
+  uri,
+  size = 80,
+  iconSize = 50,
+  iconColor = '#000',
+}: AvatarProps) {
+  const hasValidUri = uri && uri.trim() !== '';
 
-Avatar.propTypes = {
-  source: PropTypes.oneOfType([PropTypes.object, PropTypes.number]).isRequired,
-};
+  return (
+    <View
+      style={[
+        styles.container,
+        { width: size, height: size, borderRadius: size / 2 },
+      ]}
+    >
+      {hasValidUri ? (
+        <Image
+          source={{ uri }}
+          style={[
+            styles.image,
+            { width: size, height: size, borderRadius: size / 2 },
+          ]}
+        />
+      ) : (
+        <Icon name="user-circle" size={iconSize} color={iconColor} />
+      )}
+    </View>
+  );
+}
 
 export default Avatar;

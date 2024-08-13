@@ -1,7 +1,8 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
-import { useTranslation } from 'react-i18next';
 
 function ThemeSettings() {
   const {
@@ -16,8 +17,7 @@ function ThemeSettings() {
   } = useTheme();
   const { t } = useTranslation(['settings']);
 
-  const themes: { label: string; value: 'default' | 'dark' | 'system' }[] = [
-    { label: t('settings:useOSSetting'), value: 'system' },
+  const themes: { label: string; value: 'default' | 'dark' }[] = [
     { label: t('settings:dark'), value: 'dark' },
     { label: t('settings:light'), value: 'default' },
   ];

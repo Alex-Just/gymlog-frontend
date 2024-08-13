@@ -9,5 +9,9 @@
   "sex": "Sexo",
   "male": "Hombre",
   "birthday": "Cumpleaños",
-  "sampleDate": "1 de Enero de 1986"
+  "sampleDate": "1 de Enero de 1986",
+  "editProfile": "Editar Perfil",
+  "language": "Idioma",
+  "privateProfile": "Perfil Privado",
+  "selectLanguage": "Seleccionar idioma"
 }

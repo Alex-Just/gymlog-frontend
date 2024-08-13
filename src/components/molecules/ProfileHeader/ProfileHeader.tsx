@@ -24,7 +24,7 @@ function ProfileHeader({
 
   return (
     <View style={[layout.row, layout.justifyCenter, gutters.marginTop_16]}>
-      <Avatar source={{ uri: avatarUri }} />
+      <Avatar uri={avatarUri} />
       <View style={[layout.flex_1]}>
         <UserInfo name={name} />
         <View style={[layout.row, layout.justifyBetween, gutters.marginTop_12]}>

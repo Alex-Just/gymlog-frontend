@@ -18,3 +18,4 @@ export { default as EditNotifications } from './EditNotifications/EditNotificati
 export { default as WorkoutSettings } from './WorkoutSettings/WorkoutSettings';
 export { default as FirstWeekday } from './FirstWeekday/FirstWeekday';
 export { default as TimerSoundVolume } from './TimerSoundVolume/TimerSoundVolume';
+export { default as ThemePicker } from './ThemePicker/ThemePicker';

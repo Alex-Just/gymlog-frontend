@@ -1,14 +1,16 @@
 import { ScrollView, View, TouchableOpacity } from 'react-native';
-import { SafeScreen } from '@/components/template';
-import { useTheme } from '@/theme';
-import { SettingHeader } from '@/components/atoms';
-import { SettingItem } from '@/components/molecules';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '@/types/navigation';
 import { useTranslation } from 'react-i18next';
 
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+
+import { SafeScreen } from '@/components/template';
+import { SettingHeader } from '@/components/atoms';
+import { SettingItem } from '@/components/molecules';
+import { useTheme } from '@/theme';
+import { RootStackParamList } from '@/types/navigation';
+
 function Settings() {
-  const { changeTheme, variant, gutters, backgrounds } = useTheme();
+  const { gutters, backgrounds } = useTheme();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { t } = useTranslation(['settings']);
 
@@ -70,15 +72,6 @@ function Settings() {
       icon: 'moon',
       onPress: () => {
         navigation.navigate('ThemeSettings');
-      },
-    },
-    {
-      label: `${t('toggleTheme')} (${
-        variant === 'default' ? t('light') : t('dark')
-      })`,
-      icon: 'adjust',
-      onPress: () => {
-        changeTheme(variant === 'default' ? 'dark' : 'default');
       },
     },
   ];

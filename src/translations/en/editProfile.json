@@ -2,12 +2,15 @@
   "changePicture": "Change Picture",
   "name": "Name",
   "bio": "Describe yourself",
-  "link": "Link",
   "save": "Save",
   "publicProfile": "Public Profile",
+  "privateProfile": "Private Profile",
   "privateData": "Private Data",
   "sex": "Sex",
   "male": "Male",
   "birthday": "Birthday",
-  "sampleDate": "Jan 1, 1986"
+  "sampleDate": "Jan 1, 1986",
+  "editProfile": "Edit Profile",
+  "language": "Language",
+  "selectLanguage": "Select Language"
 }

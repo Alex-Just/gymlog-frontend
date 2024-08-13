@@ -42,7 +42,8 @@ function Example() {
   const { isSuccess, data, isFetching } = useQuery({
     queryKey: ['example', currentId],
     queryFn: () => {
-      return fetchOne(currentId);
+      return fetchOne();
+      // return fetchOne(currentId);
     },
     enabled: currentId >= 0,
   });

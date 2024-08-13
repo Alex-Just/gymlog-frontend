@@ -9,5 +9,9 @@
   "sex": "Пол",
   "male": "Мужчина",
   "birthday": "День рождения",
-  "sampleDate": "1 января 1986 г."
+  "sampleDate": "1 января 1986 г.",
+  "editProfile": "Редактировать профиль",
+  "language": "Язык",
+  "privateProfile": "Закрытый профиль",
+  "selectLanguage": "Выберите язык"
 }

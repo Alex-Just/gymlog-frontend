@@ -15,3 +15,4 @@ export { default as IconButton } from './IconButton/IconButton';
 export { default as Button } from './Button/Button';
 export { default as SettingIcon } from './SettingIcon/SettingIcon';
 export { default as SettingHeader } from './SettingHeader/SettingHeader';
+export { default as LanguagePicker } from './LanguagePicker/LanguagePicker';
