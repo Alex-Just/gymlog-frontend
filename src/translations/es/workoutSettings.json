@@ -1,0 +1,27 @@
+{
+  "title": "Configuración del Entrenamiento",
+  "firstDayOfWeek": "Primer Día de la Semana",
+  "previousWorkoutValues": "Valores Previos del Entrenamiento",
+  "warmUpCalculator": "Calculadora de Calentamiento",
+  "keepAwakeDuringWorkout": "Mantener Despierto Durante el Entrenamiento",
+  "plateCalculator": "Calculadora de Placas",
+  "rpeTracking": "Seguimiento de RPE",
+  "timerSound": "Sonido del Temporizador",
+  "timerVolume": "Volumen del Temporizador",
+  "defaultRestTimer": "Temporizador de Descanso por Defecto",
+  "days": {
+    "monday": "Lunes"
+  },
+  "defaults": {
+    "default": "Predeterminado"
+  },
+  "sound": {
+    "default": "Predeterminado"
+  },
+  "volume": {
+    "high": "Alto"
+  },
+  "timer": {
+    "default": "{{time}}"
+  }
+}

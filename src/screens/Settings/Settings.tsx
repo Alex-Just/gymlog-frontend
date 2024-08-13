@@ -1,7 +1,8 @@
 import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
-import { SettingHeader, SettingItem } from '@/components/atoms';
+import { SettingHeader } from '@/components/atoms';
+import { SettingItem } from '@/components/molecules';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '@/types/navigation';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +37,13 @@ function Settings() {
   ];
 
   const preferenceOptions = [
-    { label: t('workouts'), icon: 'dumbbell' },
+    {
+      label: t('workouts'),
+      icon: 'dumbbell',
+      onPress: () => {
+        navigation.navigate('WorkoutSettings');
+      },
+    },
     {
       label: t('privacyAndSocial'),
       icon: 'shield-alt',

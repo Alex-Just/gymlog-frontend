@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, ScrollView, Switch, Text, TouchableOpacity } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
-import { SettingItem } from '@/components/atoms';
+import { SettingItem } from '@/components/molecules';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '@/types/navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';

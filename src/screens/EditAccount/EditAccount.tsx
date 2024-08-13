@@ -1,7 +1,7 @@
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
-import { SettingItem } from '@/components/atoms';
+import SettingItem from '@/components/molecules/SettingItem/SettingItem';
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from '@/types/navigation';
 import { NavigationProp, useNavigation } from '@react-navigation/native';

@@ -1,0 +1,27 @@
+{
+  "title": "Настройки тренировки",
+  "firstDayOfWeek": "Первый день недели",
+  "previousWorkoutValues": "Значения предыдущей тренировки",
+  "warmUpCalculator": "Калькулятор разминки",
+  "keepAwakeDuringWorkout": "Не выключать экран во время тренировки",
+  "plateCalculator": "Калькулятор весов",
+  "rpeTracking": "Отслеживание RPE",
+  "timerSound": "Звук таймера",
+  "timerVolume": "Громкость таймера",
+  "defaultRestTimer": "Таймер отдыха по умолчанию",
+  "days": {
+    "monday": "Понедельник"
+  },
+  "defaults": {
+    "default": "По умолчанию"
+  },
+  "sound": {
+    "default": "По умолчанию"
+  },
+  "volume": {
+    "high": "Высокая"
+  },
+  "timer": {
+    "default": "{{time}}"
+  }
+}

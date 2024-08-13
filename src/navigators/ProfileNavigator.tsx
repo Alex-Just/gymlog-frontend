@@ -13,6 +13,7 @@ import {
   ChangeEmail,
   ChangePassword,
   EditNotifications,
+  WorkoutSettings,
 } from '@/screens';
 import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
 import { useTheme } from '@/theme';
@@ -30,6 +31,7 @@ function ProfileNavigator() {
     'changeEmail',
     'changePassword',
     'editNotifications',
+    'workoutSettings',
   ]);
 
   const commonHeaderOptions = {
@@ -155,6 +157,11 @@ function ProfileNavigator() {
           headerTitle: t('editNotifications:title'),
           ...commonHeaderOptions,
         }}
+      />
+      <Stack.Screen
+        name="WorkoutSettings"
+        component={WorkoutSettings}
+        options={{ title: t('workoutSettings:title') }}
       />
     </Stack.Navigator>
   );

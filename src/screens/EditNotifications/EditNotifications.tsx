@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, Switch } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import { useTheme } from '@/theme';
-import { SettingItem } from '@/components/atoms';
+import { SettingItem } from '@/components/molecules';
 import { useTranslation } from 'react-i18next';
 
 function EditNotifications() {

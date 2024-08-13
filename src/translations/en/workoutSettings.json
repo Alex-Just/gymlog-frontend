@@ -1,0 +1,27 @@
+{
+  "title": "Workout Settings",
+  "firstDayOfWeek": "First Day of the Week",
+  "previousWorkoutValues": "Previous Workout Values",
+  "warmUpCalculator": "Warm-up Calculator",
+  "keepAwakeDuringWorkout": "Keep Awake During Workout",
+  "plateCalculator": "Plate Calculator",
+  "rpeTracking": "RPE Tracking",
+  "timerSound": "Timer Sound",
+  "timerVolume": "Timer Volume",
+  "defaultRestTimer": "Default Rest Timer",
+  "days": {
+    "monday": "Monday"
+  },
+  "defaults": {
+    "default": "Default"
+  },
+  "sound": {
+    "default": "Default"
+  },
+  "volume": {
+    "high": "High"
+  },
+  "timer": {
+    "default": "{{time}}"
+  }
+}

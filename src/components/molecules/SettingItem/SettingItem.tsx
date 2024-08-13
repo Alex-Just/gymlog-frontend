@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { View, Text, StyleProp, ViewStyle } from 'react-native';
 import { useTheme } from '@/theme';
-import SettingIcon from '@/components/atoms/SettingIcon/SettingIcon';
+import { SettingIcon } from '@/components/atoms';
 
 interface SettingItemProps {
   label: string;
-  icon: string;
+  icon?: string;
   style?: StyleProp<ViewStyle>;
   children?: ReactNode;
   noBorder?: boolean;
@@ -32,9 +32,9 @@ function SettingItem({
       ]}
     >
       <View style={[layout.row, layout.itemsCenter]}>
-        <SettingIcon name={icon} />
-        <View style={[layout.flex_1, gutters.marginLeft_16]}>
-          <Text style={(fonts.size_16, fonts.text)}>{label}</Text>
+        {icon && <SettingIcon name={icon} />}
+        <View style={[layout.flex_1, icon ? gutters.marginLeft_16 : null]}>
+          <Text style={[fonts.size_16, fonts.text]}>{label}</Text>
           {description && (
             <Text style={[fonts.size_14, fonts.gray400, gutters.marginTop_4]}>
               {description}
