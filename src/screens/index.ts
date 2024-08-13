@@ -16,3 +16,5 @@ export { default as ChangeEmail } from './ChangeEmail/ChangeEmail';
 export { default as ChangePassword } from './ChangePassword/ChangePassword';
 export { default as EditNotifications } from './EditNotifications/EditNotifications';
 export { default as WorkoutSettings } from './WorkoutSettings/WorkoutSettings';
+export { default as FirstWeekday } from './FirstWeekday/FirstWeekday';
+export { default as TimerSoundVolume } from './TimerSoundVolume/TimerSoundVolume';

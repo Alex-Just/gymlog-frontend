@@ -18,6 +18,8 @@ export type RootStackParamList = {
   ChangePassword: undefined;
   EditNotifications: undefined;
   WorkoutSettings: undefined;
+  FirstWeekday: undefined;
+  TimerSoundVolume: undefined;
 };
 
 export type RootScreenProps<

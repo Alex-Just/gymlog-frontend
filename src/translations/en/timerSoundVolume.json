@@ -1,0 +1,9 @@
+{
+  "title": "Timer Sound Volume",
+  "options": {
+    "high": "High",
+    "normal": "Normal",
+    "low": "Low",
+    "off": "Off"
+  }
+}

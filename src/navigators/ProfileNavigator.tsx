@@ -14,6 +14,8 @@ import {
   ChangePassword,
   EditNotifications,
   WorkoutSettings,
+  FirstWeekday,
+  TimerSoundVolume,
 } from '@/screens';
 import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
 import { useTheme } from '@/theme';
@@ -24,6 +26,7 @@ const Stack = createStackNavigator();
 function ProfileNavigator() {
   const { colors, fonts } = useTheme();
   const { t } = useTranslation([
+    'common',
     'settings',
     'profile',
     'editAccount',
@@ -32,9 +35,12 @@ function ProfileNavigator() {
     'changePassword',
     'editNotifications',
     'workoutSettings',
+    'firstWeekday',
+    'timerSoundVolume',
   ]);
 
   const commonHeaderOptions = {
+    headerBackTitle: t('common:back'),
     headerBackTitleVisible: false,
     headerStyle: {
       backgroundColor: colors.card,
@@ -161,7 +167,26 @@ function ProfileNavigator() {
       <Stack.Screen
         name="WorkoutSettings"
         component={WorkoutSettings}
-        options={{ title: t('workoutSettings:title') }}
+        options={{
+          headerTitle: t('workoutSettings:title'),
+          ...commonHeaderOptions,
+        }}
+      />
+      <Stack.Screen
+        name="FirstWeekday"
+        component={FirstWeekday}
+        options={{
+          headerTitle: t('firstWeekday:title'),
+          ...commonHeaderOptions,
+        }}
+      />
+      <Stack.Screen
+        name="TimerSoundVolume"
+        component={TimerSoundVolume}
+        options={{
+          headerTitle: t('timerSoundVolume:title'),
+          ...commonHeaderOptions,
+        }}
       />
     </Stack.Navigator>
   );

@@ -32,5 +32,6 @@
   "private": "Private",
   "everyone": "Everyone",
   "everyoneDescription": "Workouts will be visible to all users on GymLog",
-  "privateDescription": "Workouts will only be visible to you"
+  "privateDescription": "Workouts will only be visible to you",
+  "firstWeekday": "First Weekday"
 }

@@ -1,0 +1,9 @@
+{
+  "title": "Volumen del Temporizador",
+  "options": {
+    "high": "Alto",
+    "normal": "Normal",
+    "low": "Bajo",
+    "off": "Apagado"
+  }
+}

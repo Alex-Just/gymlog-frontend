@@ -32,5 +32,6 @@
   "private": "Приватный",
   "everyone": "Все",
   "everyoneDescription": "Тренировки будут видны всем пользователям на GymLog",
-  "privateDescription": "Тренировки будут видны только Вам"
+  "privateDescription": "Тренировки будут видны только Вам",
+  "firstWeekday": "Первый день недели"
 }

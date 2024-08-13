@@ -15,3 +15,5 @@ export { default as changeEmail } from './changeEmail.json';
 export { default as changePassword } from './changePassword.json';
 export { default as editNotifications } from './editNotifications.json';
 export { default as workoutSettings } from './workoutSettings.json';
+export { default as firstWeekday } from './firstWeekday.json';
+export { default as timerSoundVolume } from './timerSoundVolume.json';
