@@ -1,0 +1,11 @@
+{
+  "title": "Routine",
+  "createdBy": "Created by {{user}}",
+  "startRoutine": "Start Routine",
+  "exercises": "Exercises",
+  "editRoutine": "Edit Routine",
+  "restTimer": "Rest Timer: {{time}}",
+  "set": "SET",
+  "kg": "KG",
+  "reps": "REPS"
+}

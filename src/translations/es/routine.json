@@ -1,0 +1,11 @@
+{
+  "title": "Rutina",
+  "createdBy": "Creado por {{user}}",
+  "startRoutine": "Iniciar rutina",
+  "exercises": "Ejercicios",
+  "editRoutine": "Editar rutina",
+  "restTimer": "Temporizador de descanso: {{time}}",
+  "set": "SERIE",
+  "kg": "KG",
+  "reps": "REP"
+}

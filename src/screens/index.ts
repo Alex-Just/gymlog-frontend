@@ -19,3 +19,4 @@ export { default as WorkoutSettings } from './WorkoutSettings/WorkoutSettings';
 export { default as FirstWeekday } from './FirstWeekday/FirstWeekday';
 export { default as TimerSoundVolume } from './TimerSoundVolume/TimerSoundVolume';
 export { default as ThemePicker } from './ThemePicker/ThemePicker';
+export { default as Routine } from './Routine/Routine';

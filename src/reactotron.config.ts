@@ -24,3 +24,17 @@ Reactotron.configure({
   .use(mmkvPlugin<ReactotronReactNative>({ storage }))
   .use(reactotronReactQuery(queryClientManager))
   .connect();
+
+Reactotron.onCustomCommand({
+  title: 'Clear MMKV Storage',
+  description: 'Clears all data in MMKV storage',
+  command: 'clear_mmkv_storage',
+  handler: () => {
+    storage.clearAll();
+    Reactotron.display({
+      name: 'MMKV Storage Cleared',
+      value: 'All data has been cleared from MMKV storage.',
+      important: true,
+    });
+  },
+});

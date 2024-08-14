@@ -16,3 +16,5 @@ export { default as Button } from './Button/Button';
 export { default as SettingIcon } from './SettingIcon/SettingIcon';
 export { default as SettingHeader } from './SettingHeader/SettingHeader';
 export { default as LanguagePicker } from './LanguagePicker/LanguagePicker';
+export { default as Switch } from './Switch/Switch';
+export { default as ExerciseImage } from './ExerciseImage/ExerciseImage';

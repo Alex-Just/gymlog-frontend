@@ -4,6 +4,7 @@ export type RootStackParamList = {
   Startup: undefined;
   Example: undefined;
   Routines: undefined;
+  Routine: { id: string };
   Settings: undefined;
   Profile: undefined;
   PrivacyAndSocial: undefined;

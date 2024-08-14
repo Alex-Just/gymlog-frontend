@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { View, ScrollView, Switch, Text, TouchableOpacity } from 'react-native';
-import { SafeScreen } from '@/components/template';
-import { useTheme } from '@/theme';
-import { SettingItem } from '@/components/molecules';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '@/types/navigation';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useTranslation } from 'react-i18next';
+
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+
+import { Switch } from '@/components/atoms';
+import { SettingItem } from '@/components/molecules';
+import { SafeScreen } from '@/components/template';
+import { useTheme } from '@/theme';
+import { RootStackParamList } from '@/types/navigation';
 
 function PrivacyAndSocial() {
   const { gutters, colors, fonts, layout } = useTheme();
@@ -28,7 +31,6 @@ function PrivacyAndSocial() {
             <Switch
               value={isPrivateProfile}
               onValueChange={setIsPrivateProfile}
-              style={[gutters.marginLeft_28]}
             />
           </SettingItem>
 
@@ -41,8 +43,6 @@ function PrivacyAndSocial() {
             <Switch
               value={hideSuggestedUsers}
               onValueChange={setHideSuggestedUsers}
-              style={[gutters.marginLeft_28]}
-              trackColor={{ false: colors.text, true: colors.primaryBtnBg }}
             />
           </SettingItem>
 

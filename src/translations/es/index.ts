@@ -3,6 +3,7 @@ export { default as example } from './example.json';
 export { default as startup } from './startup.json';
 export { default as welcome } from './welcome.json';
 export { default as routines } from './routines.json';
+export { default as routine } from './routine.json';
 export { default as settings } from './settings.json';
 export { default as home } from './home.json';
 export { default as workoutCard } from './workoutCard.json';

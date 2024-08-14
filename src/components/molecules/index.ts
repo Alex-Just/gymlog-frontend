@@ -7,3 +7,4 @@ export { default as SettingItem } from './SettingItem/SettingItem';
 export { HeaderLeftButton } from './HeaderButtons/HeaderButtons';
 export { HeaderRightContainer } from './HeaderButtons/HeaderButtons';
 export { default as PickerModal } from './PickerModal/PickerModal';
+export { default as ExerciseSetsTable } from './ExerciseSetsTable/ExerciseSetsTable';

@@ -1,14 +1,22 @@
+import { instance } from '@/services/instance';
 import { Routine, routineSchema } from '@/types/schemas/routine';
 
-// Mocked routines data
-const routines: Routine[] = [
-  { id: '0190ea80-a870-7902-9672-8be033deba07', name: 'My First Routine' },
-];
-
 export default async (): Promise<Routine[]> => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(routines.map(routine => routineSchema.parse(routine)));
-    }, 500);
-  });
+  try {
+    const response = await instance.get('routines/').json<Routine[]>();
+
+    return response.map(routine => {
+      const routineWithExercises = {
+        ...routine,
+        routineExercises: Array.isArray(routine.routineExercises)
+          ? routine.routineExercises
+          : [],
+      };
+
+      return routineSchema.parse(routineWithExercises);
+    });
+  } catch (error) {
+    console.error('Failed to fetch routines:', error);
+    throw new Error('Error fetching routines');
+  }
 };

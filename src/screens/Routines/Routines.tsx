@@ -1,10 +1,15 @@
-import { View, ScrollView, ActivityIndicator } from 'react-native';
-import { useQuery } from '@tanstack/react-query';
+import {
+  View,
+  ScrollView,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
+
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
+
 import { SafeScreen } from '@/components/template';
-import { fetchAll } from '@/services/routines';
-import { useTheme } from '@/theme';
-import { Routine } from '@/types/schemas/routine';
 import {
   PrimaryButton,
   SecondaryButton,
@@ -15,10 +20,16 @@ import {
   Collapsible,
 } from '@/components/atoms';
 import { ButtonGroup } from '@/components/molecules';
+import { textOverflowEllipsis } from '@/utils/textOverflowEllipsis';
+import { fetchAll } from '@/services/routines';
+import { useTheme } from '@/theme';
+import { Routine } from '@/types/schemas/routine';
+import { RootStackParamList } from '@/types/navigation';
 
 function Routines() {
   const { t } = useTranslation(['routines']);
   const { changeTheme, variant, layout, gutters, colors } = useTheme();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { isLoading, data } = useQuery<Routine[]>({
     queryKey: ['routines'],
     queryFn: fetchAll,
@@ -30,18 +41,20 @@ function Routines() {
 
   const renderRoutine = (routine: Routine) => (
     <Card key={routine.id}>
-      <CardTitle
-        title={routine.name}
-        onMenuPress={() => {
-          /* Handle three-dot menu action */
-        }}
-      />
-      <CardSubtitle
-        subtitle={t('routines:exercises', {
-          defaultValue:
-            'Calf Press (Machine), Squat (Barbell), Lat Pulldown (Cable), Bench Press (Barbell)',
-        })}
-      />
+      <TouchableOpacity
+        style={[layout.fullWidth]}
+        onPress={() => navigation.navigate('Routine', { id: routine.id })}
+        activeOpacity={0.8}
+      >
+        <CardTitle
+          title={routine.name}
+          onMenuPress={() => {
+            /* Handle three-dot menu action */
+          }}
+        />
+        <CardSubtitle subtitle={textOverflowEllipsis(routine.exercisesTxt)} />
+      </TouchableOpacity>
+
       <PrimaryButton
         label={t('routines:startRoutine')}
         onPress={onChangeTheme}

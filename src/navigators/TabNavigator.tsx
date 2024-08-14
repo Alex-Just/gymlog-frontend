@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
-import { useTheme } from '@/theme';
-import { Home, Routines } from '@/screens';
-import ProfileNavigator from '@/navigators/ProfileNavigator';
 import { RouteProp } from '@react-navigation/native';
+
 import { TabBarIcon } from '@/components/organisms';
-import { useTranslation } from 'react-i18next';
+import ProfileNavigator from '@/navigators/ProfileNavigator';
+import RoutineNavigator from '@/navigators/RoutineNavigator';
+import { Home } from '@/screens';
+import { useTheme } from '@/theme';
 
 type RootTabParamList = {
   Home: undefined;
@@ -63,8 +66,8 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Workout"
-        component={Routines}
-        options={{ title: t('routines:title') }}
+        component={RoutineNavigator}
+        options={{ title: t('routines:title'), headerShown: false }}
       />
       <Tab.Screen
         name="ProfileTab"

@@ -6,21 +6,30 @@ import {
   TouchableOpacity,
   Text,
   ActivityIndicator,
-  Switch,
+  Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { launchImageLibrary, Asset } from 'react-native-image-picker';
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigation } from '@react-navigation/native';
 
+import {
+  PrimaryButton,
+  Avatar,
+  LanguagePicker,
+  Switch,
+} from '@/components/atoms';
 import { SafeScreen } from '@/components/template';
-import { useTheme } from '@/theme';
-import { PrimaryButton, Avatar, LanguagePicker } from '@/components/atoms';
 import { fetchOne, updateOne } from '@/services/users';
+import { useTheme } from '@/theme';
+import { appendFileToFormData, FileData } from '@/utils/appendFileToFormData';
 
 function EditProfile() {
   const { gutters, layout, fonts, backgrounds, colors, borders } = useTheme();
   const { t } = useTranslation(['editProfile', 'common']);
   const queryClient = useQueryClient();
+  const navigation = useNavigation();
 
   const { data, isLoading } = useQuery({
     queryKey: ['user'],
@@ -29,8 +38,9 @@ function EditProfile() {
 
   const mutation = useMutation({
     mutationFn: updateOne,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['user'] });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['user'] });
+      navigation.goBack();
     },
   });
 
@@ -62,14 +72,46 @@ function EditProfile() {
     );
   }
 
+  const handleImagePicker = async () => {
+    try {
+      const response = await launchImageLibrary({
+        mediaType: 'photo',
+        includeBase64: false,
+      });
+
+      if (response.errorCode) {
+        Alert.alert('Error', `Image picker error: ${response.errorMessage}`);
+      } else if (response.assets && response.assets.length > 0) {
+        const pickedImage: Asset = response.assets[0];
+        if (pickedImage.uri) {
+          setProfilePicture(pickedImage.uri);
+        } else {
+          Alert.alert('Error', 'Image URI is not available.');
+        }
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Something went wrong with the image picker.');
+    }
+  };
+
   const handleSave = () => {
-    mutation.mutate({
-      name,
-      bio,
-      language,
-      profile_picture: profilePicture,
-      private_profile: privateProfile,
-    });
+    const formData = new FormData();
+
+    formData.append('name', name);
+    formData.append('bio', bio);
+    formData.append('language', language);
+    formData.append('private_profile', privateProfile.toString());
+
+    if (profilePicture) {
+      const fileData: FileData = {
+        uri: profilePicture,
+        type: 'image/jpeg',
+        name: 'profile_picture.jpg',
+      };
+      appendFileToFormData(formData, 'profile_picture', fileData);
+    }
+
+    mutation.mutate(formData);
   };
 
   return (
@@ -83,7 +125,12 @@ function EditProfile() {
           ]}
         >
           <Avatar uri={profilePicture} />
-          <TouchableOpacity style={gutters.marginVertical_14}>
+          <TouchableOpacity
+            style={gutters.marginVertical_14}
+            onPress={() => {
+              void handleImagePicker();
+            }}
+          >
             <Text style={[fonts.size_16, fonts.primaryBtnBg]}>
               {t('changePicture')}
             </Text>
@@ -172,8 +219,7 @@ function EditProfile() {
         <Switch
           value={privateProfile}
           onValueChange={setPrivateProfile}
-          style={gutters.marginBottom_16}
-          trackColor={{ false: colors.text, true: colors.primaryBtnBg }}
+          style={[gutters.marginBottom_16]}
         />
 
         <PrimaryButton label={t('save')} onPress={handleSave} />
