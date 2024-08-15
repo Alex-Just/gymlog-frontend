@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import {
   ScrollView,
   View,
@@ -6,19 +5,24 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useTranslation } from 'react-i18next';
 
-import { useQuery } from '@tanstack/react-query';
 import { useRoute } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 
-import { PrimaryButton, ExerciseImage } from '@/components/atoms';
-import { ExerciseSetsTable } from '@/components/molecules';
+import {
+  SectionHeader,
+  PrimaryButton,
+  SectionSubHeader,
+} from '@/components/atoms';
+import { RowGroup } from '@/components/molecules';
+import { RoutineExercise } from '@/components/organisms';
 import { SafeScreen } from '@/components/template';
-import { useTheme } from '@/theme';
 import { fetchOne } from '@/services/routines/fetchOne';
+import { useTheme } from '@/theme';
 
 function Routine() {
-  const { layout, gutters, fonts, colors } = useTheme();
+  const { gutters, fonts, colors } = useTheme();
   const { t } = useTranslation(['routine', 'common']);
   const route = useRoute();
   const { id } = route.params as { id: string };
@@ -51,10 +55,8 @@ function Routine() {
   return (
     <SafeScreen>
       <ScrollView>
-        <View style={[gutters.marginTop_8]}>
-          <Text style={[fonts.size_24, fonts.bold, fonts.text]}>
-            {routine.name}
-          </Text>
+        <View>
+          <SectionHeader title={routine.name} />
           <Text style={[fonts.size_14, fonts.gray400, gutters.marginTop_4]}>
             {t('createdBy', { user: 'Unknown' })}
           </Text>
@@ -63,22 +65,12 @@ function Routine() {
         <PrimaryButton
           label={t('startRoutine')}
           onPress={() => {
-            /* Start routine action */
+            // Start routine action
           }}
         />
 
-        <View
-          style={[
-            layout.row,
-            layout.justifyBetween,
-            layout.itemsCenter,
-            gutters.marginTop_16,
-            gutters.marginBottom_16,
-          ]}
-        >
-          <Text style={[fonts.size_16, fonts.bold, { color: colors.gray400 }]}>
-            {t('exercises')}
-          </Text>
+        <RowGroup>
+          <SectionSubHeader title={t('exercises')} />
           <TouchableOpacity
             onPress={() => {
               /* Edit routine action */
@@ -88,44 +80,22 @@ function Routine() {
               {t('editRoutine')}
             </Text>
           </TouchableOpacity>
-        </View>
+        </RowGroup>
 
         {routine.routineExercises.map(routineExercise => (
-          <View key={routineExercise.id} style={[gutters.marginBottom_24]}>
-            <View
-              style={[layout.row, layout.itemsCenter, gutters.marginBottom_4]}
-            >
-              <ExerciseImage
-                uri={routineExercise.exercise.smallImage}
-                size={50}
-                iconSize={24}
-                iconColor={colors.primaryBtnText}
-              />
-              <Text style={[fonts.size_16, fonts.bold, fonts.primaryBtnBg]}>
-                {routineExercise.exercise.name}
-              </Text>
-            </View>
-
-            <View style={[layout.row, layout.itemsCenter, gutters.marginTop_4]}>
-              <Icon
-                name="clock"
-                size={16}
-                color={colors.primaryBtnBg}
-                style={[gutters.marginRight_8]}
-              />
-              <Text style={[fonts.size_14, fonts.primaryBtnBg]}>
-                {t('restTimer', { time: '1min 0s' })}
-              </Text>
-            </View>
-
-            <ExerciseSetsTable
-              sets={routineExercise.routineSets.map(set => ({
+          <RoutineExercise
+            key={routineExercise.id}
+            exercise={{
+              imageUri: routineExercise.exercise.smallImage,
+              name: routineExercise.exercise.name,
+              restTimer: t('restTimer', { time: '1min 0s' }),
+              sets: routineExercise.routineSets.map(set => ({
                 set: set.order,
                 kg: set.weight,
                 reps: set.reps,
-              }))}
-            />
-          </View>
+              })),
+            }}
+          />
         ))}
       </ScrollView>
     </SafeScreen>

@@ -17,7 +17,7 @@ function WorkoutExercise({
 
   return (
     <View
-      style={[style, layout.row, layout.itemsCenter, gutters.marginTop_8]}
+      style={[style, layout.row, layout.itemsCenter, gutters.marginTop_4]}
       {...props}
     >
       <Icon name="dumbbell" size={16} color={colors.text} />

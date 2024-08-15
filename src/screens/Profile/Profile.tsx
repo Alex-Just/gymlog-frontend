@@ -1,13 +1,16 @@
 import { View, ScrollView, Text, ActivityIndicator } from 'react-native';
-import { useTheme } from '@/theme';
-import { SafeScreen } from '@/components/template';
-import { ProfileHeader, WorkoutCard } from '@/components/molecules';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { fetchAllWorkouts, Workout } from '@/services/workouts/fetchAll';
 import { useTranslation } from 'react-i18next';
 
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+
+import { SafeScreen } from '@/components/template';
+import { SectionSubHeader } from '@/components/atoms';
+import { ProfileHeader, WorkoutCard } from '@/components/molecules';
+import { fetchAllWorkouts, Workout } from '@/services/workouts/fetchAll';
+import { useTheme } from '@/theme';
+
 function Profile() {
-  const { gutters, colors, fonts, backgrounds } = useTheme();
+  const { colors, fonts, backgrounds } = useTheme();
   const { t } = useTranslation();
 
   const {
@@ -53,16 +56,7 @@ function Profile() {
             following={0}
           />
         </View>
-        <Text
-          style={[
-            fonts.gray400,
-            fonts.size_16,
-            gutters.marginBottom_8,
-            gutters.marginTop_16,
-          ]}
-        >
-          {t('profile:workouts')}
-        </Text>
+        <SectionSubHeader title={t('profile:workouts')} />
         {workoutData?.map((workout: Workout) => (
           <WorkoutCard key={workout.id} {...workout} />
         ))}

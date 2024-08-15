@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { useTheme } from '@/theme';
-import { WorkoutExercise, Card } from '@/components/atoms';
-import WorkoutCardHeader from '@/components/molecules/WorkoutCardHeader/WorkoutCardHeader';
 import { useTranslation } from 'react-i18next';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import { WorkoutExercise, Card, SectionSubHeader } from '@/components/atoms';
+import WorkoutCardHeader from '@/components/molecules/WorkoutCardHeader/WorkoutCardHeader';
+import { useTheme } from '@/theme';
 
 interface IWorkoutCardProps {
   avatar: string;
@@ -31,14 +31,7 @@ function WorkoutCard({
     <Card>
       <WorkoutCardHeader avatar={avatar} name={name} date={date} />
       <Text style={[fonts.size_16, fonts.bold, fonts.text]}>{title}</Text>
-      <View
-        style={[
-          layout.row,
-          layout.justifyBetween,
-          gutters.marginBottom_8,
-          gutters.marginTop_8,
-        ]}
-      >
+      <View style={[layout.row, layout.justifyBetween, gutters.marginTop_8]}>
         <View>
           <Text style={[fonts.size_14, fonts.gray400]}>
             {t('workoutCard:time')}
@@ -56,9 +49,7 @@ function WorkoutCard({
           </Text>
         </View>
       </View>
-      <Text style={[fonts.size_16, fonts.gray400]}>
-        {t('workoutCard:workout')}
-      </Text>
+      <SectionSubHeader title={t('workoutCard:workout')} small />
       <View>
         {exercises.map(exercise => (
           <WorkoutExercise key={exercise.id} exerciseName={exercise.name} />
@@ -81,4 +72,4 @@ function WorkoutCard({
   );
 }
 
-export default React.memo(WorkoutCard);
+export default WorkoutCard;
