@@ -2,7 +2,7 @@ import { Text, TouchableOpacity } from 'react-native';
 
 import { useTheme } from '@/theme';
 
-interface SectionSubHeaderProps {
+interface ISectionSubHeaderProps {
   title: string;
   small?: boolean;
   onPress?: () => void;
@@ -12,7 +12,7 @@ function SectionSubHeader({
   title,
   onPress,
   small = false,
-}: SectionSubHeaderProps) {
+}: ISectionSubHeaderProps) {
   const { fonts, gutters } = useTheme();
 
   return (

@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-// Define the schema for individual sets within an exercise
 const setSchema = z.object({
   id: z.string().uuid(),
   order: z.number(),
@@ -8,7 +7,6 @@ const setSchema = z.object({
   reps: z.number(),
 });
 
-// Define the schema for the exercise details
 const exerciseDetailSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
@@ -20,7 +18,6 @@ const exerciseDetailSchema = z.object({
   largeImage: z.string().url(),
 });
 
-// Define the schema for individual exercises within the routine
 const exerciseSchema = z.object({
   id: z.string().uuid(),
   order: z.number(),
@@ -30,7 +27,6 @@ const exerciseSchema = z.object({
   routineSets: z.array(setSchema).default([]),
 });
 
-// Define the schema for the entire routine
 export const routineSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),

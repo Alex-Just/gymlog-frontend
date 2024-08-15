@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 import { View, Text, StyleProp, ViewStyle } from 'react-native';
-import { useTheme } from '@/theme';
-import { SettingIcon } from '@/components/atoms';
 
-interface SettingItemProps {
+import { SettingIcon } from '@/components/atoms';
+import { useTheme } from '@/theme';
+
+interface ISettingItemProps {
   label: string;
   icon?: string;
   style?: StyleProp<ViewStyle>;
@@ -19,7 +20,7 @@ function SettingItem({
   children,
   noBorder,
   description,
-}: SettingItemProps) {
+}: ISettingItemProps) {
   const { layout, fonts, gutters, borders } = useTheme();
 
   return (

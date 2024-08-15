@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function HeaderLeftButton() {
+export function ProfileHeaderLeft() {
   const { fonts, gutters } = useTheme();
   const { t } = useTranslation('profile');
 
@@ -26,7 +26,7 @@ export function HeaderLeftButton() {
   );
 }
 
-export function HeaderRightContainer() {
+export function ProfileHeaderRight() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { colors, layout, gutters } = useTheme();
 

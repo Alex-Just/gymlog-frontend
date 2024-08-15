@@ -1,76 +1,36 @@
-import { View, Text } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { useTheme } from '@/theme';
 
-interface ExerciseSet {
+interface IExerciseSet {
   set: number;
   kg: number;
   reps: number;
 }
 
-interface ExerciseSetsTableProps {
-  sets: ExerciseSet[];
+interface IExerciseSetsTableProps {
+  sets: IExerciseSet[];
 }
 
-function ExerciseSetsTable({ sets }: ExerciseSetsTableProps) {
+const styles = StyleSheet.create({
+  fixedWidth: {
+    width: 80,
+  },
+});
+
+function ExerciseSetsTable({ sets }: IExerciseSetsTableProps) {
   const { gutters, fonts, layout, borders, colors } = useTheme();
-  const { t } = useTranslation('routine');
 
   return (
     <View style={[gutters.marginTop_4]}>
-      {/* Table Header */}
-      <View
-        style={[
-          layout.row,
-          layout.justifyAround,
-          borders.wBottom_1,
-          borders.lightCard,
-          gutters.paddingVertical_8,
-        ]}
-      >
-        <Text
-          style={[
-            fonts.size_14,
-            layout.flex_1,
-            fonts.alignCenter,
-            fonts.gray400,
-          ]}
-        >
-          {t('set')}
-        </Text>
-        <Text
-          style={[
-            fonts.size_14,
-            layout.flex_1,
-            fonts.alignCenter,
-            fonts.gray400,
-          ]}
-        >
-          {t('kg')}
-        </Text>
-        <Text
-          style={[
-            fonts.size_14,
-            layout.flex_1,
-            fonts.alignCenter,
-            fonts.gray400,
-          ]}
-        >
-          {t('reps')}
-        </Text>
-      </View>
-
-      {/* Table Body */}
       {sets.map((set, index) => (
         <View
           key={index}
           style={[
             layout.row,
-            layout.justifyAround,
-            borders.wBottom_1,
-            borders.lightCard,
+            layout.itemsCenter,
             gutters.paddingVertical_8,
+            borders.lightCard,
             {
               backgroundColor:
                 index % 2 === 0 ? colors.lightCard : colors.background,
@@ -79,31 +39,31 @@ function ExerciseSetsTable({ sets }: ExerciseSetsTableProps) {
         >
           <Text
             style={[
-              fonts.size_14,
-              layout.flex_1,
+              fonts.size_16,
               fonts.alignCenter,
               fonts.text,
               fonts.bold,
+              styles.fixedWidth,
             ]}
           >
             {set.set}
           </Text>
           <Text
             style={[
-              fonts.size_14,
-              layout.flex_1,
+              fonts.size_16,
               fonts.alignCenter,
               fonts.text,
+              styles.fixedWidth,
             ]}
           >
             {set.kg}
           </Text>
           <Text
             style={[
-              fonts.size_14,
-              layout.flex_1,
+              fonts.size_16,
               fonts.alignCenter,
               fonts.text,
+              styles.fixedWidth,
             ]}
           >
             {set.reps}

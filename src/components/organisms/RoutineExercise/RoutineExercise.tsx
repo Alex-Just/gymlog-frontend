@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 
+import { ExerciseSetsHeader } from '@/components/atoms';
 import {
   RoutineExerciseHeader,
   ExerciseSetsTable,
@@ -22,6 +23,7 @@ function RoutineExercise({ exercise }: IRoutineExerciseProps) {
         name={exercise.name}
         restTimer={exercise.restTimer}
       />
+      <ExerciseSetsHeader />
       <ExerciseSetsTable sets={exercise.sets} />
     </View>
   );

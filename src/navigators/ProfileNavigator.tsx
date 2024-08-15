@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 import { createStackNavigator } from '@react-navigation/stack';
+
 import {
   Profile,
   Settings,
@@ -17,9 +20,8 @@ import {
   FirstWeekday,
   TimerSoundVolume,
 } from '@/screens';
-import { HeaderLeftButton, HeaderRightContainer } from '@/components/molecules';
+import { ProfileHeaderLeft, ProfileHeaderRight } from '@/components/molecules';
 import { useTheme } from '@/theme';
-import { useTranslation } from 'react-i18next';
 
 const Stack = createStackNavigator();
 
@@ -62,8 +64,8 @@ function ProfileNavigator() {
         name="Profile"
         component={Profile}
         options={{
-          headerLeft: HeaderLeftButton,
-          headerRight: HeaderRightContainer,
+          headerLeft: ProfileHeaderLeft,
+          headerRight: ProfileHeaderRight,
           headerTitle: t('settings:profile'),
           ...commonHeaderOptions,
         }}

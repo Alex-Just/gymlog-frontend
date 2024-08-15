@@ -8,5 +8,5 @@ export { default as RowGroup } from './RowGroup/RowGroup';
 export { default as SettingItem } from './SettingItem/SettingItem';
 export { default as WorkoutCard } from './WorkoutCard/WorkoutCard';
 export { default as WorkoutCardHeader } from './WorkoutCardHeader/WorkoutCardHeader';
-export { HeaderLeftButton } from './HeaderButtons/HeaderButtons';
-export { HeaderRightContainer } from './HeaderButtons/HeaderButtons';
+export { ProfileHeaderLeft } from '@/components/molecules/ProfileHeaders/ProfileHeaders';
+export { ProfileHeaderRight } from '@/components/molecules/ProfileHeaders/ProfileHeaders';

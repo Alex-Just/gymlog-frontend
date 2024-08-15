@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Routine, Routines } from '@/screens';
+import { EditRoutineHeaderRight } from '@/components/atoms';
+import { Routine, Routines, EditRoutine } from '@/screens';
 import { useTheme } from '@/theme';
 
 const Stack = createStackNavigator();
@@ -44,6 +45,14 @@ function RoutineNavigator() {
         options={{
           headerTitle: t('routine:title'),
           ...commonHeaderOptions,
+        }}
+      />
+      <Stack.Screen
+        name="EditRoutine"
+        component={EditRoutine}
+        options={{
+          headerTitle: 'Edit Routine',
+          headerRight: EditRoutineHeaderRight,
         }}
       />
     </Stack.Navigator>

@@ -1,12 +1,13 @@
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import { useTheme } from '@/theme';
 
-interface SettingIconProps {
+interface ISettingIconProps {
   name: string;
   size?: number;
 }
 
-function SettingIcon({ name, size = 20 }: SettingIconProps) {
+function SettingIcon({ name, size = 20 }: ISettingIconProps) {
   const { colors, gutters, layout } = useTheme();
 
   return (

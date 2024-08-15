@@ -3,12 +3,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { useTheme } from '@/theme';
 
-interface TextWithIconProps {
+interface ITextWithIconProps {
   icon: string;
   text: string;
 }
 
-function TextWithIcon({ icon, text }: TextWithIconProps) {
+function TextWithIcon({ icon, text }: ITextWithIconProps) {
   const { layout, fonts, colors, gutters } = useTheme();
 
   return (

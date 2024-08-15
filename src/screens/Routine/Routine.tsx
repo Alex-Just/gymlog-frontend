@@ -7,7 +7,11 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { useRoute } from '@react-navigation/native';
+import {
+  NavigationProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
 import {
@@ -20,12 +24,14 @@ import { RoutineExercise } from '@/components/organisms';
 import { SafeScreen } from '@/components/template';
 import { fetchOne } from '@/services/routines/fetchOne';
 import { useTheme } from '@/theme';
+import { RootStackParamList } from '@/types/navigation';
 
 function Routine() {
   const { gutters, fonts, colors } = useTheme();
   const { t } = useTranslation(['routine', 'common']);
   const route = useRoute();
   const { id } = route.params as { id: string };
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const {
     data: routine,
@@ -72,9 +78,7 @@ function Routine() {
         <RowGroup>
           <SectionSubHeader title={t('exercises')} />
           <TouchableOpacity
-            onPress={() => {
-              /* Edit routine action */
-            }}
+            onPress={() => navigation.navigate('EditRoutine', { routine })}
           >
             <Text style={[fonts.size_16, fonts.primaryBtnBg]}>
               {t('editRoutine')}

@@ -1,26 +1,29 @@
 import type { StackScreenProps } from '@react-navigation/stack';
 
+import { Routine } from '@/types/schemas/routine';
+
 export type RootStackParamList = {
-  Startup: undefined;
-  Example: undefined;
-  Routines: undefined;
-  Routine: { id: string };
-  Settings: undefined;
-  Profile: undefined;
-  PrivacyAndSocial: undefined;
-  DefaultWorkoutVisibility: undefined;
-  Units: undefined;
-  ThemeSettings: undefined;
-  Language: undefined;
-  EditProfile: undefined;
-  EditAccount: undefined;
-  ChangeUsername: undefined;
   ChangeEmail: undefined;
   ChangePassword: undefined;
+  ChangeUsername: undefined;
+  DefaultWorkoutVisibility: undefined;
+  EditAccount: undefined;
   EditNotifications: undefined;
-  WorkoutSettings: undefined;
+  EditProfile: undefined;
+  EditRoutine: { routine: Routine };
+  Example: undefined;
   FirstWeekday: undefined;
+  Language: undefined;
+  PrivacyAndSocial: undefined;
+  Profile: undefined;
+  Routine: { id: string };
+  Routines: undefined;
+  Settings: undefined;
+  Startup: undefined;
+  ThemeSettings: undefined;
   TimerSoundVolume: undefined;
+  Units: undefined;
+  WorkoutSettings: undefined;
 };
 
 export type RootScreenProps<

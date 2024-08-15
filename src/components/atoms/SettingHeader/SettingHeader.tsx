@@ -1,12 +1,13 @@
 import React from 'react';
 import { Text } from 'react-native';
+
 import { useTheme } from '@/theme';
 
-interface SettingHeaderProps {
+interface ISettingHeaderProps {
   title: string;
 }
 
-function SettingHeader({ title }: SettingHeaderProps): React.ReactElement {
+function SettingHeader({ title }: ISettingHeaderProps): React.ReactElement {
   const { fonts, backgrounds, gutters } = useTheme();
 
   return (
