@@ -5,6 +5,7 @@ export { default as CardSubtitle } from './CardSubtitle/CardSubtitle';
 export { default as CardTitle } from './CardTitle/CardTitle';
 export { default as Collapsible } from './Collapsible/Collapsible';
 export { default as Counter } from './Counter/Counter';
+export { default as EditRoutineExerciseNote } from './EditRoutineExerciseNote/EditRoutineExerciseNote';
 export { default as EditRoutineHeaderRight } from './EditRoutineHeaderRight/EditRoutineHeaderRight';
 export { default as ExerciseImage } from './ExerciseImage/ExerciseImage';
 export { default as ExerciseSetsHeader } from './ExerciseSetsHeader/ExerciseSetsHeader';

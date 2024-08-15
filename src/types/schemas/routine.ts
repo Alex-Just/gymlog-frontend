@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const setSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string().uuid().optional(),
   order: z.number(),
   weight: z.number(),
   reps: z.number(),

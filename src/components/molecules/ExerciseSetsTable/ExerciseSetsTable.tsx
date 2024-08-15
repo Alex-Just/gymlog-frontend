@@ -42,7 +42,6 @@ function ExerciseSetsTable({ sets }: IExerciseSetsTableProps) {
               fonts.size_16,
               fonts.alignCenter,
               fonts.text,
-              fonts.bold,
               styles.fixedWidth,
             ]}
           >

@@ -1,57 +1,92 @@
-import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import { ScrollView } from 'react-native';
+import { useForm, useFieldArray } from 'react-hook-form';
 
 import { useRoute } from '@react-navigation/native';
 
-import {
-  SectionHeader,
-  SecondaryButton,
-  ExerciseSetsHeader,
-} from '@/components/atoms';
-import { RoutineExerciseHeader } from '@/components/molecules';
+import { SectionHeader } from '@/components/atoms';
 import { SafeScreen } from '@/components/template';
+import { EditRoutineExercise } from '@/components/organisms';
 import { Routine } from '@/types/schemas/routine';
-import { useTheme } from '@/theme';
 
-const styles = StyleSheet.create({
-  fixedHeight: {
-    height: 40,
-  },
-  fixedWidth: {
-    width: 80,
-  },
-  fixedHeight20: {
-    height: 20,
-  },
-});
+export interface IRoutineFormValues {
+  routineExercises: ReadonlyArray<{
+    id: string;
+    note?: string | null;
+    exercise: {
+      name: string;
+      smallImage: string;
+    };
+    routineSets: Array<{
+      id?: string;
+      order: number;
+      weight: string; // Store as string first
+      reps: number;
+    }>;
+  }>;
+}
 
 function EditRoutine() {
-  const { t } = useTranslation(['routine', 'common', 'editRoutine']);
-  const { fonts, gutters, layout, colors, backgrounds, borders } = useTheme();
   const route = useRoute();
   const { routine } = route.params as { routine: Routine };
 
-  const [routineData, setRoutineData] = useState(routine);
+  const { control, handleSubmit } = useForm<IRoutineFormValues>({
+    defaultValues: {
+      routineExercises: routine.routineExercises.map(exercise => ({
+        ...exercise,
+        note: exercise.note ?? '',
+        routineSets: exercise.routineSets.map(set => ({
+          ...set,
+          weight: set.weight.toString(),
+        })),
+      })),
+    },
+  });
 
-  const handleSetChange = (
-    exerciseIndex: number,
-    setIndex: number,
-    field: 'kg' | 'reps',
-    value: string,
-  ) => {
-    const updatedRoutine = { ...routineData };
-    const mappedField = field === 'kg' ? 'weight' : field;
-    updatedRoutine.routineExercises[exerciseIndex].routineSets[setIndex][
-      mappedField
-    ] = parseFloat(value);
-    setRoutineData(updatedRoutine);
+  const { fields, update } = useFieldArray({
+    control,
+    name: 'routineExercises',
+  });
+
+  const addSetToExercise = (exerciseIndex: number) => {
+    const exercise = fields[exerciseIndex];
+    const lastSet = exercise.routineSets[exercise.routineSets.length - 1];
+    const newSet = {
+      id: undefined,
+      order: exercise.routineSets.length + 1,
+      weight: lastSet ? lastSet.weight : '0',
+      reps: lastSet ? lastSet.reps : 0,
+    };
+    update(exerciseIndex, {
+      ...exercise,
+      routineSets: [...exercise.routineSets, newSet],
+    });
   };
 
-  const handleNotesChange = (exerciseIndex: number, value: string) => {
-    const updatedRoutine = { ...routineData };
-    updatedRoutine.routineExercises[exerciseIndex].note = value;
-    setRoutineData(updatedRoutine);
+  const removeSetFromExercise = (exerciseIndex: number, setIndex: number) => {
+    const exercise = fields[exerciseIndex];
+    const updatedRoutineSets = exercise.routineSets.filter(
+      (_, index) => index !== setIndex,
+    );
+    const reorderedSets = updatedRoutineSets.map((set, index) => ({
+      ...set,
+      order: index + 1,
+    }));
+    update(exerciseIndex, {
+      ...exercise,
+      routineSets: reorderedSets,
+    });
+  };
+
+  const validateWeight = (val: string): string => {
+    let cleanedValue = val.replace(',', '.').replace(/[^0-9.]/g, '');
+    const parts = cleanedValue.split('.');
+    if (parts.length > 2) {
+      cleanedValue = `${parts[0]}.${parts.slice(1).join('')}`;
+    }
+    if (cleanedValue.endsWith('.')) {
+      cleanedValue = cleanedValue.slice(0, -1);
+    }
+    return cleanedValue;
   };
 
   return (
@@ -59,93 +94,17 @@ function EditRoutine() {
       <ScrollView>
         <SectionHeader title={routine.name} />
 
-        {routineData.routineExercises.map((routineExercise, exerciseIndex) => (
-          <View key={routineExercise.id}>
-            <RoutineExerciseHeader
-              imageUri={routineExercise.exercise.smallImage}
-              name={routineExercise.exercise.name}
-              restTimer={t('restTimer', { time: '1min 0s' })}
-            />
-
-            <TextInput
-              style={[
-                backgrounds.lightCard,
-                gutters.marginBottom_4,
-                gutters.marginTop_4,
-                gutters.paddingHorizontal_8,
-                gutters.paddingVertical_12,
-                borders.rounded_4,
-                fonts.size_16,
-                fonts.text,
-              ]}
-              placeholder={t('editRoutine:addNotes')}
-              value={routineExercise.note || ''}
-              onChangeText={value => handleNotesChange(exerciseIndex, value)}
-            />
-
-            <ExerciseSetsHeader />
-
-            {routineExercise.routineSets.map((set, setIndex) => (
-              <View
-                key={setIndex}
-                style={[
-                  layout.row,
-                  layout.itemsCenter,
-                  gutters.paddingVertical_8,
-                  {
-                    backgroundColor:
-                      setIndex % 2 !== 0 ? colors.lightCard : colors.background,
-                  },
-                  styles.fixedHeight,
-                ]}
-              >
-                <Text
-                  style={[
-                    fonts.size_16,
-                    fonts.text,
-                    fonts.bold,
-                    fonts.alignCenter,
-                    styles.fixedWidth,
-                  ]}
-                >
-                  {set.order}
-                </Text>
-                <TextInput
-                  style={[
-                    gutters.paddingHorizontal_8,
-                    borders.rounded_4,
-                    fonts.size_16,
-                    fonts.text,
-                    fonts.alignCenter,
-                    styles.fixedWidth,
-                    styles.fixedHeight20,
-                  ]}
-                  value={set.weight.toString()}
-                  onChangeText={value =>
-                    handleSetChange(exerciseIndex, setIndex, 'kg', value)
-                  }
-                  keyboardType="numeric"
-                />
-                <TextInput
-                  style={[
-                    gutters.paddingHorizontal_8,
-                    borders.rounded_4,
-                    fonts.size_16,
-                    fonts.text,
-                    fonts.alignCenter,
-                    styles.fixedWidth,
-                    styles.fixedHeight20,
-                  ]}
-                  value={set.reps.toString()}
-                  onChangeText={value =>
-                    handleSetChange(exerciseIndex, setIndex, 'reps', value)
-                  }
-                  keyboardType="numeric"
-                />
-              </View>
-            ))}
-            <SecondaryButton label={t('editRoutine:addSet')} iconName="plus" />
-          </View>
+        {fields.map((exercise, exerciseIndex) => (
+          <EditRoutineExercise
+            key={exercise.id}
+            exercise={exercise}
+            exerciseIndex={exerciseIndex}
+            control={control}
+            handleSubmit={handleSubmit}
+            addSetToExercise={addSetToExercise}
+            removeSetFromExercise={removeSetFromExercise}
+            validateWeight={validateWeight}
+          />
         ))}
       </ScrollView>
     </SafeScreen>
