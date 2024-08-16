@@ -39,7 +39,7 @@ function EditRoutineExercise({
   handleSubmit,
 }: IEditRoutineExerciseProps) {
   const { addSetToExercise, removeSetFromExercise } = useEditRoutineExercise();
-  const { t } = useTranslation('editRoutine');
+  const { t } = useTranslation(['editRoutine', 'routine']);
 
   const onSubmit = (data: IRoutineFormValues) => {
     // eslint-disable-next-line no-console
@@ -51,7 +51,7 @@ function EditRoutineExercise({
       <RoutineExerciseHeader
         imageUri={exercise.exercise.smallImage}
         name={exercise.exercise.name}
-        restTimer="1min 0s"
+        restTimer={t('routine:restTimer', { time: '1min 0s' })}
       />
       <EditRoutineExerciseNote
         name={`routineExercises.${exerciseIndex}.note` as const}
