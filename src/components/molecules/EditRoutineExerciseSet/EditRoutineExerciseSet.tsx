@@ -84,8 +84,8 @@ export function EditRoutineExerciseSet({
             value={value || ''}
             onBlur={() => {
               const validatedWeight = validateWeight(value || '');
-              onChange(validatedWeight); // Properly typed function
-              handleSubmit(); // Typed function, ensure it's expecting proper data
+              onChange(validatedWeight);
+              handleSubmit();
             }}
             onChangeText={onChange}
             keyboardType="numeric"

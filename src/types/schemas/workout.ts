@@ -1,5 +1,21 @@
 import { z } from 'zod';
 
+/**
+ * Exercise         (e.g. "Bicep Curl (Barbell), Primary Muscle Group: Biceps")
+ * |
+ * +-- Routine                    (a template/plan for future workout sessions)
+ *     |
+ *     +-- RoutineExercise                       (an exercise within a routine)
+ *     |   |
+ *     |   +-- RoutineSet             (a routing set e.g. "#1 - 40 kg 15 reps")
+ *     |
+ *     +-- Workout          (an actual live workout session based on a routine)
+ *         |
+ *         +-- ExerciseLog      (a log of exercises performed during a workout)
+ *             |
+ *             +-- SetLog                (a log of sets within an exercise log)
+ */
+
 const routineSetSchema = z.object({
   id: z.string().uuid().optional(),
   order: z.number(),
