@@ -10,7 +10,7 @@ const languages = [
   { label: 'Русский', value: 'ru' },
 ];
 
-interface LanguagePickerProps {
+interface ILanguagePickerProps {
   selectedLanguage: string;
   onLanguageChange: (lang: string) => void;
 }
@@ -18,7 +18,7 @@ interface LanguagePickerProps {
 function LanguagePicker({
   selectedLanguage,
   onLanguageChange,
-}: LanguagePickerProps) {
+}: ILanguagePickerProps) {
   const { t } = useTranslation(['editProfile', 'common']);
 
   const handleLanguageChange = async (lang: string) => {

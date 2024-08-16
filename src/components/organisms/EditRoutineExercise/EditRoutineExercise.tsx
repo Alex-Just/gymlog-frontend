@@ -4,6 +4,7 @@ import {
   UseFieldArrayUpdate,
 } from 'react-hook-form';
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import {
   EditRoutineExerciseNote,
@@ -15,30 +16,14 @@ import {
   EditRoutineExerciseSet,
 } from '@/components/molecules';
 import { IRoutineFormValues } from '@/types/forms';
+import { RoutineExercise, RoutineSet } from '@/types/schemas/workout';
 import { validateFloat } from '@/utils/numberUtils';
 
 import { useEditRoutineExercise } from './hooks/useEditRoutineExercise';
 
 interface IEditRoutineExerciseProps {
-  exercise: {
-    id: string;
-    note?: string | null | undefined;
-    exercise: {
-      name: string;
-      smallImage: string;
-      id: string;
-      exerciseType: 'weight_reps' | 'reps_only';
-      equipment: string;
-      primaryMuscleGroup: string;
-      otherMuscles: string[];
-      largeImage: string;
-    };
-    routineSets: {
-      id?: string;
-      order: number;
-      weight: string;
-      reps: number;
-    }[];
+  exercise: Omit<RoutineExercise, 'routineSets'> & {
+    routineSets: Array<Omit<RoutineSet, 'weight'> & { weight: string }>;
   };
   exerciseIndex: number;
   control: Control<IRoutineFormValues>;
@@ -54,6 +39,7 @@ function EditRoutineExercise({
   handleSubmit,
 }: IEditRoutineExerciseProps) {
   const { addSetToExercise, removeSetFromExercise } = useEditRoutineExercise();
+  const { t } = useTranslation('editRoutine');
 
   const onSubmit = (data: IRoutineFormValues) => {
     // eslint-disable-next-line no-console
@@ -70,9 +56,10 @@ function EditRoutineExercise({
       <EditRoutineExerciseNote
         name={`routineExercises.${exerciseIndex}.note` as const}
         control={control}
-        placeholder="Add exercise notes here"
+        placeholder={t('addNotes')}
       />
       <ExerciseSetsHeader />
+
       {exercise.routineSets.map((set, setIndex) => (
         <EditRoutineExerciseSet
           key={setIndex}
@@ -99,7 +86,7 @@ function EditRoutineExercise({
         />
       ))}
       <SecondaryButton
-        label="Add Set"
+        label={t('addSet')}
         iconName="plus"
         onPress={() =>
           addSetToExercise(

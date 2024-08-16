@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@/theme';
 
-interface PickerModalProps<T> {
+interface IPickerModalProps<T> {
   title: string;
   items: { label: string; value: T }[];
   selectedValue: T;
@@ -18,7 +18,7 @@ function PickerModal<T extends string | number>({
   items,
   selectedValue,
   onValueChange,
-}: PickerModalProps<T>) {
+}: IPickerModalProps<T>) {
   const { layout, fonts, gutters, backgrounds, borders, colors } = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
 

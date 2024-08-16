@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const setSchema = z.object({
+const routineSetSchema = z.object({
   id: z.string().uuid().optional(),
   order: z.number(),
   weight: z.number(),
@@ -29,7 +29,7 @@ const routineExerciseSchema = z.object({
   exercise: exerciseSchema,
   restTimer: z.string(),
   note: z.string().nullable().optional(),
-  routineSets: z.array(setSchema).default([]),
+  routineSets: z.array(routineSetSchema).default([]),
 });
 
 export const routineSchema = z.object({
@@ -43,14 +43,14 @@ export const workoutSchema = z.object({
   id: z.number(),
   avatar: z.string().url(), // Assuming avatar is a URL
   name: z.string(),
-  date: z.string(), // You might want to validate this as a date string
+  date: z.string(),
   title: z.string(),
   time: z.string(),
   volume: z.string(),
-  exercises: z.array(exerciseSchemaLite), // Array of exercises
+  exercises: z.array(exerciseSchemaLite),
 });
 
-export type Set = z.infer<typeof setSchema>;
+export type RoutineSet = z.infer<typeof routineSetSchema>;
 export type Exercise = z.infer<typeof exerciseSchema>;
 export type RoutineExercise = z.infer<typeof routineExerciseSchema>;
 export type Routine = z.infer<typeof routineSchema>;

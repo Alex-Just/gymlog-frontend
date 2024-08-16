@@ -1,10 +1,11 @@
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+
 import { Avatar, UserInfo, Counter } from '@/components/atoms';
 import { useTheme } from '@/theme';
-import { useTranslation } from 'react-i18next';
 
-interface ProfileHeaderProps {
+interface IProfileHeaderProps {
   avatarUri: string;
   name: string;
   workouts: number;
@@ -18,7 +19,7 @@ function ProfileHeader({
   workouts,
   followers,
   following,
-}: ProfileHeaderProps) {
+}: IProfileHeaderProps) {
   const { layout, gutters } = useTheme();
   const { t } = useTranslation('profile');
 

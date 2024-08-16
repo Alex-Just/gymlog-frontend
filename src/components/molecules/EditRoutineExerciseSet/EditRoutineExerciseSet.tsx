@@ -10,13 +10,10 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import { useTheme } from '@/theme';
 import { IRoutineFormValues } from '@/types/forms';
+import { RoutineSet } from '@/types/schemas/workout';
 
 interface IEditRoutineExerciseSetProps {
-  set: {
-    order: number;
-    weight: string;
-    reps: number;
-  };
+  set: Omit<RoutineSet, 'weight'> & { weight: string };
   exerciseIndex: number;
   setIndex: number;
   onRemoveSet: (exerciseIndex: number, setIndex: number) => void;
