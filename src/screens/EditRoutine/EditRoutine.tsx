@@ -77,18 +77,6 @@ function EditRoutine() {
     });
   };
 
-  const validateWeight = (val: string): string => {
-    let cleanedValue = val.replace(',', '.').replace(/[^0-9.]/g, '');
-    const parts = cleanedValue.split('.');
-    if (parts.length > 2) {
-      cleanedValue = `${parts[0]}.${parts.slice(1).join('')}`;
-    }
-    if (cleanedValue.endsWith('.')) {
-      cleanedValue = cleanedValue.slice(0, -1);
-    }
-    return cleanedValue;
-  };
-
   return (
     <SafeScreen>
       <ScrollView>
@@ -103,7 +91,6 @@ function EditRoutine() {
             handleSubmit={handleSubmit}
             addSetToExercise={addSetToExercise}
             removeSetFromExercise={removeSetFromExercise}
-            validateWeight={validateWeight}
           />
         ))}
       </ScrollView>

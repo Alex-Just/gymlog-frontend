@@ -11,6 +11,7 @@ import {
   EditRoutineExerciseSet,
 } from '@/components/molecules';
 import { IRoutineFormValues } from '@/types/forms';
+import { validateFloat } from '@/utils/numberUtils';
 
 interface IEditRoutineExerciseProps {
   exercise: {
@@ -32,7 +33,6 @@ interface IEditRoutineExerciseProps {
   handleSubmit: UseFormHandleSubmit<IRoutineFormValues>;
   addSetToExercise: (exerciseIndex: number) => void;
   removeSetFromExercise: (exerciseIndex: number, setIndex: number) => void;
-  validateWeight: (val: string) => string;
 }
 
 function EditRoutineExercise({
@@ -42,7 +42,6 @@ function EditRoutineExercise({
   handleSubmit,
   addSetToExercise,
   removeSetFromExercise,
-  validateWeight,
 }: IEditRoutineExerciseProps) {
   const onSubmit = (data: IRoutineFormValues) => {
     // eslint-disable-next-line no-console
@@ -71,7 +70,7 @@ function EditRoutineExercise({
           setIndex={setIndex}
           onRemoveSet={() => removeSetFromExercise(exerciseIndex, setIndex)}
           control={control}
-          validateWeight={validateWeight}
+          validateWeight={validateFloat}
           handleSubmit={() => {
             void handleSubmit(onSubmit)();
           }}
