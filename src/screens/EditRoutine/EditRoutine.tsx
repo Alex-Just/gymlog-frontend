@@ -31,36 +31,6 @@ function EditRoutine() {
     name: 'routineExercises',
   });
 
-  const addSetToExercise = (exerciseIndex: number) => {
-    const exercise = fields[exerciseIndex];
-    const lastSet = exercise.routineSets[exercise.routineSets.length - 1];
-    const newSet = {
-      id: undefined,
-      order: exercise.routineSets.length + 1,
-      weight: lastSet ? lastSet.weight : '0',
-      reps: lastSet ? lastSet.reps : 0,
-    };
-    update(exerciseIndex, {
-      ...exercise,
-      routineSets: [...exercise.routineSets, newSet],
-    });
-  };
-
-  const removeSetFromExercise = (exerciseIndex: number, setIndex: number) => {
-    const exercise = fields[exerciseIndex];
-    const updatedRoutineSets = exercise.routineSets.filter(
-      (_, index) => index !== setIndex,
-    );
-    const reorderedSets = updatedRoutineSets.map((set, index) => ({
-      ...set,
-      order: index + 1,
-    }));
-    update(exerciseIndex, {
-      ...exercise,
-      routineSets: reorderedSets,
-    });
-  };
-
   return (
     <SafeScreen>
       <ScrollView>
@@ -72,9 +42,8 @@ function EditRoutine() {
             exercise={exercise}
             exerciseIndex={exerciseIndex}
             control={control}
+            update={update}
             handleSubmit={handleSubmit}
-            addSetToExercise={addSetToExercise}
-            removeSetFromExercise={removeSetFromExercise}
           />
         ))}
       </ScrollView>

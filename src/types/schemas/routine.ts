@@ -23,7 +23,7 @@ const exerciseSchema = z.object({
   order: z.number(),
   exercise: exerciseDetailSchema,
   restTimer: z.string(),
-  note: z.string().nullable(),
+  note: z.string().nullable().optional(),
   routineSets: z.array(setSchema).default([]),
 });
 
