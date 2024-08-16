@@ -7,23 +7,7 @@ import { SectionHeader } from '@/components/atoms';
 import { SafeScreen } from '@/components/template';
 import { EditRoutineExercise } from '@/components/organisms';
 import { Routine } from '@/types/schemas/routine';
-
-export interface IRoutineFormValues {
-  routineExercises: ReadonlyArray<{
-    id: string;
-    note?: string | null;
-    exercise: {
-      name: string;
-      smallImage: string;
-    };
-    routineSets: Array<{
-      id?: string;
-      order: number;
-      weight: string; // Store as string first
-      reps: number;
-    }>;
-  }>;
-}
+import { IRoutineFormValues } from '@/types/forms';
 
 function EditRoutine() {
   const route = useRoute();
