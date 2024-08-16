@@ -1,12 +1,44 @@
 import { z } from 'zod';
 
-// Define the schema for a single exercise in a workout
-export const exerciseSchema = z.object({
+const setSchema = z.object({
+  id: z.string().uuid().optional(),
+  order: z.number(),
+  weight: z.number(),
+  reps: z.number(),
+});
+
+const exerciseSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  exerciseType: z.enum(['weight_reps', 'reps_only']),
+  equipment: z.string(),
+  primaryMuscleGroup: z.string(),
+  otherMuscles: z.array(z.string()),
+  smallImage: z.string().url(),
+  largeImage: z.string().url(),
+});
+
+export const exerciseSchemaLite = z.object({
   id: z.number(),
   name: z.string(),
 });
 
-// Define the schema for the workout
+const routineExerciseSchema = z.object({
+  id: z.string().uuid(),
+  order: z.number(),
+  exercise: exerciseSchema,
+  restTimer: z.string(),
+  note: z.string().nullable().optional(),
+  routineSets: z.array(setSchema).default([]),
+});
+
+export const routineSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  routineExercises: z.array(routineExerciseSchema).default([]),
+  exercisesTxt: z.string(),
+});
+
 export const workoutSchema = z.object({
   id: z.number(),
   avatar: z.string().url(), // Assuming avatar is a URL
@@ -15,9 +47,11 @@ export const workoutSchema = z.object({
   title: z.string(),
   time: z.string(),
   volume: z.string(),
-  exercises: z.array(exerciseSchema), // Array of exercises
+  exercises: z.array(exerciseSchemaLite), // Array of exercises
 });
 
-// Define TypeScript types based on the schema
+export type Set = z.infer<typeof setSchema>;
 export type Exercise = z.infer<typeof exerciseSchema>;
+export type RoutineExercise = z.infer<typeof routineExerciseSchema>;
+export type Routine = z.infer<typeof routineSchema>;
 export type Workout = z.infer<typeof workoutSchema>;

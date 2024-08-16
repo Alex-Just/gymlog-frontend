@@ -1,6 +1,6 @@
 import type { StackScreenProps } from '@react-navigation/stack';
 
-import { Routine } from '@/types/schemas/routine';
+import { Routine } from '@/types/schemas/workout';
 
 export type RootStackParamList = {
   ChangeEmail: undefined;

@@ -6,7 +6,7 @@ import { useRoute } from '@react-navigation/native';
 import { SectionHeader } from '@/components/atoms';
 import { SafeScreen } from '@/components/template';
 import { EditRoutineExercise } from '@/components/organisms';
-import { Routine } from '@/types/schemas/routine';
+import { Routine } from '@/types/schemas/workout';
 import { IRoutineFormValues } from '@/types/forms';
 
 function EditRoutine() {

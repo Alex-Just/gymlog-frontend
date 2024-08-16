@@ -1,5 +1,5 @@
 import { instance } from '@/services/instance';
-import { Routine, routineSchema } from '@/types/schemas/routine';
+import { Routine, routineSchema } from '@/types/schemas/workout';
 
 export default async (): Promise<Routine[]> => {
   try {

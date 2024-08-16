@@ -23,7 +23,7 @@ import { ButtonGroup } from '@/components/molecules';
 import { textOverflowEllipsis } from '@/utils/textOverflowEllipsis';
 import { fetchAll } from '@/services/routines';
 import { useTheme } from '@/theme';
-import { Routine } from '@/types/schemas/routine';
+import { Routine } from '@/types/schemas/workout';
 import { RootStackParamList } from '@/types/navigation';
 
 function Routines() {

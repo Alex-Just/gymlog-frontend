@@ -17,6 +17,8 @@ import {
 import { IRoutineFormValues } from '@/types/forms';
 import { validateFloat } from '@/utils/numberUtils';
 
+import { useEditRoutineExercise } from './hooks/useEditRoutineExercise';
+
 interface IEditRoutineExerciseProps {
   exercise: {
     id: string;
@@ -51,39 +53,7 @@ function EditRoutineExercise({
   update,
   handleSubmit,
 }: IEditRoutineExerciseProps) {
-  const addSetToExercise = () => {
-    const lastSet = exercise.routineSets[exercise.routineSets.length - 1];
-    const newSet = {
-      id: undefined,
-      order: exercise.routineSets.length + 1,
-      weight: lastSet ? lastSet.weight : '0',
-      reps: lastSet ? lastSet.reps : 0,
-    };
-    const updatedExercise = {
-      ...exercise,
-      order: exerciseIndex + 1,
-      restTimer: '1min 0s',
-      routineSets: [...exercise.routineSets, newSet],
-    };
-    update(exerciseIndex, updatedExercise);
-  };
-
-  const removeSetFromExercise = (setIndex: number) => {
-    const updatedRoutineSets = exercise.routineSets.filter(
-      (_, index) => index !== setIndex,
-    );
-    const reorderedSets = updatedRoutineSets.map((set, index) => ({
-      ...set,
-      order: index + 1,
-    }));
-    const updatedExercise = {
-      ...exercise,
-      order: exerciseIndex + 1,
-      restTimer: '1min 0s',
-      routineSets: reorderedSets,
-    };
-    update(exerciseIndex, updatedExercise);
-  };
+  const { addSetToExercise, removeSetFromExercise } = useEditRoutineExercise();
 
   const onSubmit = (data: IRoutineFormValues) => {
     // eslint-disable-next-line no-console
@@ -109,7 +79,18 @@ function EditRoutineExercise({
           set={set}
           exerciseIndex={exerciseIndex}
           setIndex={setIndex}
-          onRemoveSet={() => removeSetFromExercise(setIndex)}
+          onRemoveSet={() =>
+            removeSetFromExercise(
+              {
+                ...exercise,
+                order: exerciseIndex + 1,
+                restTimer: '1min 0s',
+              },
+              exerciseIndex,
+              setIndex,
+              update,
+            )
+          }
           control={control}
           validateWeight={validateFloat}
           handleSubmit={() => {
@@ -120,7 +101,17 @@ function EditRoutineExercise({
       <SecondaryButton
         label="Add Set"
         iconName="plus"
-        onPress={addSetToExercise}
+        onPress={() =>
+          addSetToExercise(
+            {
+              ...exercise,
+              order: exerciseIndex + 1,
+              restTimer: '1min 0s',
+            },
+            exerciseIndex,
+            update,
+          )
+        }
       />
     </View>
   );

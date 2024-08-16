@@ -1,4 +1,4 @@
-import { Routine } from '@/types/schemas/routine';
+import { Routine } from '@/types/schemas/workout';
 
 // Define form values type by reusing `Routine` type
 // but modifying `weight` to be a string for easier form validation (dots/commas)
