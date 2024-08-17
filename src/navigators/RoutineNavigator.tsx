@@ -51,7 +51,7 @@ function RoutineNavigator() {
         name="EditRoutine"
         component={EditRoutine}
         options={{
-          headerTitle: 'Edit Routine',
+          headerTitle: t('routine:editRoutine'),
           headerRight: EditRoutineHeaderRight,
         }}
       />

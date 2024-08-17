@@ -3,7 +3,7 @@
   "createdBy": "Создано {{user}}",
   "startRoutine": "Начать тренировку",
   "exercises": "Упражнения",
-  "editRoutine": "Редактировать программу",
+  "editRoutine": "Редактировать",
   "restTimer": "Таймер отдыха: {{time}}",
   "set": "ПОДХОД",
   "kg": "КГ",
