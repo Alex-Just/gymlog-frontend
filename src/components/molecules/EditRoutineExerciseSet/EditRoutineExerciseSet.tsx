@@ -19,7 +19,6 @@ interface IEditRoutineExerciseSetProps {
   onRemoveSet: (exerciseIndex: number, setIndex: number) => void;
   control: Control<IRoutineFormValues>;
   validateWeight: (val: string) => string;
-  handleSubmit: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -41,7 +40,6 @@ export function EditRoutineExerciseSet({
   onRemoveSet,
   control,
   validateWeight,
-  handleSubmit,
 }: IEditRoutineExerciseSetProps) {
   const { layout, fonts, gutters, backgrounds, borders } = useTheme();
 
@@ -85,7 +83,6 @@ export function EditRoutineExerciseSet({
             onBlur={() => {
               const validatedWeight = validateWeight(value || '');
               onChange(validatedWeight);
-              handleSubmit();
             }}
             onChangeText={onChange}
             keyboardType="numeric"
@@ -108,7 +105,6 @@ export function EditRoutineExerciseSet({
               styles.height_20,
             ]}
             value={value?.toString() || ''}
-            onBlur={handleSubmit}
             onChangeText={val => onChange(parseInt(val, 10) || 0)}
             keyboardType="numeric"
           />

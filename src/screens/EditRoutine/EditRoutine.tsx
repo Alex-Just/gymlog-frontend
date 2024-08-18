@@ -1,24 +1,28 @@
+import { useCallback, useEffect } from 'react';
 import { ScrollView } from 'react-native';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
 
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
-import { SectionHeader } from '@/components/atoms';
-import { SafeScreen } from '@/components/template';
+import { SectionHeader, EditRoutineHeaderRight } from '@/components/atoms';
 import { EditRoutineExercise } from '@/components/organisms';
-import { Routine } from '@/types/schemas/workout';
+import { SafeScreen } from '@/components/template';
+import { useEditRoutineExercise } from '@/hooks';
 import { IRoutineFormValues } from '@/types/forms';
+import { Routine } from '@/types/schemas/workout';
 
 function EditRoutine() {
   const route = useRoute();
+  const navigation = useNavigation();
   const { routine } = route.params as { routine: Routine };
+  const { onSubmit } = useEditRoutineExercise();
 
-  const { control, handleSubmit } = useForm<IRoutineFormValues>({
+  const formMethods = useForm<IRoutineFormValues>({
     defaultValues: {
-      routineExercises: routine.routineExercises.map(exercise => ({
-        ...exercise,
-        note: exercise.note ?? '',
-        routineSets: exercise.routineSets.map(set => ({
+      routineExercises: routine.routineExercises.map(routineExercise => ({
+        ...routineExercise,
+        note: routineExercise.note ?? '',
+        routineSets: routineExercise.routineSets.map(set => ({
           ...set,
           weight: set.weight.toString(),
         })),
@@ -26,27 +30,41 @@ function EditRoutine() {
     },
   });
 
-  const { fields, update } = useFieldArray({
+  const { control, handleSubmit } = formMethods;
+  const { fields, update: updateRoutineExercises } = useFieldArray({
     control,
     name: 'routineExercises',
   });
 
+  const HeaderRightComponent = useCallback(
+    () => (
+      <EditRoutineHeaderRight onPress={() => void handleSubmit(onSubmit)()} />
+    ),
+    [handleSubmit, onSubmit],
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: HeaderRightComponent,
+    });
+  }, [navigation, HeaderRightComponent]);
+
   return (
     <SafeScreen>
-      <ScrollView>
-        <SectionHeader title={routine.name} />
+      <FormProvider {...formMethods}>
+        <ScrollView>
+          <SectionHeader title={routine.name} />
 
-        {fields.map((exercise, exerciseIndex) => (
-          <EditRoutineExercise
-            key={exercise.id}
-            exercise={exercise}
-            exerciseIndex={exerciseIndex}
-            control={control}
-            update={update}
-            handleSubmit={handleSubmit}
-          />
-        ))}
-      </ScrollView>
+          {fields.map((routineExercise, exerciseIndex) => (
+            <EditRoutineExercise
+              key={routineExercise.id}
+              routineExercise={routineExercise}
+              exerciseIndex={exerciseIndex}
+              updateRoutineExercises={updateRoutineExercises}
+            />
+          ))}
+        </ScrollView>
+      </FormProvider>
     </SafeScreen>
   );
 }

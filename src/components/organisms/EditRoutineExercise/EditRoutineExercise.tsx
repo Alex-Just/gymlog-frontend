@@ -1,10 +1,6 @@
-import {
-  Control,
-  UseFormHandleSubmit,
-  UseFieldArrayUpdate,
-} from 'react-hook-form';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
 
 import {
   EditRoutineExerciseNote,
@@ -16,51 +12,45 @@ import {
   EditRoutineExerciseSet,
 } from '@/components/molecules';
 import { IRoutineFormValues } from '@/types/forms';
+import { useEditRoutineExercise } from '@/hooks';
 import { RoutineExercise, RoutineSet } from '@/types/schemas/workout';
 import { validateFloat } from '@/utils/numberUtils';
 
-import { useEditRoutineExercise } from './hooks/useEditRoutineExercise';
-
 interface IEditRoutineExerciseProps {
-  exercise: Omit<RoutineExercise, 'routineSets'> & {
+  routineExercise: Omit<RoutineExercise, 'routineSets'> & {
     routineSets: Array<Omit<RoutineSet, 'weight'> & { weight: string }>;
   };
   exerciseIndex: number;
-  control: Control<IRoutineFormValues>;
-  update: UseFieldArrayUpdate<IRoutineFormValues, 'routineExercises'>;
-  handleSubmit: UseFormHandleSubmit<IRoutineFormValues>;
+  updateRoutineExercises: UseFieldArrayUpdate<
+    IRoutineFormValues,
+    'routineExercises'
+  >;
 }
 
 function EditRoutineExercise({
-  exercise,
+  routineExercise,
   exerciseIndex,
-  control,
-  update,
-  handleSubmit,
+  updateRoutineExercises,
 }: IEditRoutineExerciseProps) {
   const { addSetToExercise, removeSetFromExercise } = useEditRoutineExercise();
   const { t } = useTranslation(['editRoutine', 'routine']);
-
-  const onSubmit = (data: IRoutineFormValues) => {
-    // eslint-disable-next-line no-console
-    console.log('Submitted data:', data);
-  };
+  const { control } = useFormContext<IRoutineFormValues>();
 
   return (
-    <View key={exercise.id}>
+    <View key={routineExercise.id}>
       <RoutineExerciseHeader
-        imageUri={exercise.exercise.smallImage}
-        name={exercise.exercise.name}
+        imageUri={routineExercise.exercise.smallImage}
+        name={routineExercise.exercise.name}
         restTimer={t('routine:restTimer', { time: '1min 0s' })}
       />
       <EditRoutineExerciseNote
-        name={`routineExercises.${exerciseIndex}.note` as const}
+        name={`routineExercises.${exerciseIndex}.note`}
         control={control}
         placeholder={t('addNotes')}
       />
       <ExerciseSetsHeader />
 
-      {exercise.routineSets.map((set, setIndex) => (
+      {routineExercise.routineSets.map((set, setIndex) => (
         <EditRoutineExerciseSet
           key={setIndex}
           set={set}
@@ -69,20 +59,18 @@ function EditRoutineExercise({
           onRemoveSet={() =>
             removeSetFromExercise(
               {
-                ...exercise,
+                ...routineExercise,
+                note: routineExercise.note,
                 order: exerciseIndex + 1,
                 restTimer: '1min 0s',
               },
               exerciseIndex,
               setIndex,
-              update,
+              updateRoutineExercises,
             )
           }
           control={control}
           validateWeight={validateFloat}
-          handleSubmit={() => {
-            void handleSubmit(onSubmit)();
-          }}
         />
       ))}
       <SecondaryButton
@@ -91,12 +79,13 @@ function EditRoutineExercise({
         onPress={() =>
           addSetToExercise(
             {
-              ...exercise,
+              ...routineExercise,
+              note: routineExercise.note,
               order: exerciseIndex + 1,
               restTimer: '1min 0s',
             },
             exerciseIndex,
-            update,
+            updateRoutineExercises,
           )
         }
       />

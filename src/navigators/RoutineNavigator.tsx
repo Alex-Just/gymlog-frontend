@@ -8,6 +8,10 @@ import { useTheme } from '@/theme';
 
 const Stack = createStackNavigator();
 
+function EditRoutineHeaderRightWrapper() {
+  return <EditRoutineHeaderRight />;
+}
+
 function RoutineNavigator() {
   const { colors, fonts } = useTheme();
   const { t } = useTranslation(['common', 'routines', 'routine']);
@@ -52,7 +56,7 @@ function RoutineNavigator() {
         component={EditRoutine}
         options={{
           headerTitle: t('routine:editRoutine'),
-          headerRight: EditRoutineHeaderRight,
+          headerRight: EditRoutineHeaderRightWrapper,
         }}
       />
     </Stack.Navigator>

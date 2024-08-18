@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@/theme';
 
-function EditRoutineHeaderRight() {
+interface EditRoutineHeaderRightProps {
+  onPress?: () => void;
+}
+
+function EditRoutineHeaderRight({ onPress }: EditRoutineHeaderRightProps) {
   const { fonts, gutters } = useTheme();
   const { t } = useTranslation('common');
 
-  const handleUpdate = () => {
-    // Handle the update action here
-  };
-
   return (
-    <TouchableOpacity onPress={handleUpdate}>
+    <TouchableOpacity onPress={onPress}>
       <Text
         style={[
           fonts.size_16,
