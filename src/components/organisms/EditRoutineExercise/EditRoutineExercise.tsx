@@ -7,10 +7,7 @@ import {
   ExerciseSetsHeader,
   SecondaryButton,
 } from '@/components/atoms';
-import {
-  RoutineExerciseHeader,
-  EditRoutineExerciseSet,
-} from '@/components/molecules';
+import { RoutineExerciseHeader, EditRoutineSet } from '@/components/molecules';
 import { IRoutineFormValues } from '@/types/forms';
 import { useEditRoutineExercise } from '@/hooks';
 import { RoutineExercise, RoutineSet } from '@/types/schemas/workout';
@@ -51,7 +48,7 @@ function EditRoutineExercise({
       <ExerciseSetsHeader />
 
       {routineExercise.routineSets.map((set, setIndex) => (
-        <EditRoutineExerciseSet
+        <EditRoutineSet
           key={setIndex}
           set={set}
           exerciseIndex={exerciseIndex}

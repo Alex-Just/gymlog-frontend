@@ -1,6 +1,6 @@
 export { default as Brand } from './Brand/Brand';
 export { default as ButtonGroup } from './ButtonGroup/ButtonGroup';
-export { default as EditRoutineExerciseSet } from './EditRoutineExerciseSet/EditRoutineExerciseSet';
+export { default as EditRoutineSet } from '@/components/molecules/EditRoutineSet/EditRoutineSet';
 export { default as ExerciseSetsTable } from './ExerciseSetsTable/ExerciseSetsTable';
 export { default as PickerModal } from './PickerModal/PickerModal';
 export { default as ProfileHeader } from './ProfileHeader/ProfileHeader';

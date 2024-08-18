@@ -12,7 +12,7 @@ import { useTheme } from '@/theme';
 import { IRoutineFormValues } from '@/types/forms';
 import { RoutineSet } from '@/types/schemas/workout';
 
-interface IEditRoutineExerciseSetProps {
+interface IEditRoutineSetProps {
   set: Omit<RoutineSet, 'weight'> & { weight: string };
   exerciseIndex: number;
   setIndex: number;
@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export function EditRoutineExerciseSet({
+export function EditRoutineSet({
   set,
   exerciseIndex,
   setIndex,
   onRemoveSet,
   control,
   validateWeight,
-}: IEditRoutineExerciseSetProps) {
+}: IEditRoutineSetProps) {
   const { layout, fonts, gutters, backgrounds, borders } = useTheme();
 
   return (
@@ -121,4 +121,4 @@ export function EditRoutineExerciseSet({
   );
 }
 
-export default EditRoutineExerciseSet;
+export default EditRoutineSet;
