@@ -48,6 +48,7 @@ function RoutineNavigator() {
         component={Routine}
         options={{
           headerTitle: t('routine:title'),
+          title: t('routine:editRoutine'),
           ...commonHeaderOptions,
         }}
       />

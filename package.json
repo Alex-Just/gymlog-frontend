@@ -14,7 +14,8 @@
     "postinstall": "npx patch-package",
     "aider:help": "node src/commands/aiderHelp.ts",
     "i18n:extract": "i18next-scanner",
-    "reinstall": "rm -rf node_modules yarn.lock && yarn && cd ios && bundle install && bundle exec pod install && cd .."
+    "reinstall-full": "rm -rf node_modules yarn.lock && yarn && cd ios && bundle install && bundle exec pod install && cd ..",
+    "reinstall": "cd ios && bundle install && bundle exec pod install && cd .."
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.3.1",
@@ -29,6 +30,7 @@
     "react-hook-form": "^7.52.2",
     "react-i18next": "^14.1.0",
     "react-native": "0.74.5",
+    "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "^2.17.1",
     "react-native-image-picker": "^7.1.2",
     "react-native-mmkv": "^2.12.2",

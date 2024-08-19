@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import FlashMessage from 'react-native-flash-message';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useEffect } from 'react';
 
 import '@/translations';
 import { ThemeProvider } from '@/theme';
@@ -22,6 +24,7 @@ function App() {
         <SafeAreaProvider>
           <NavigationContainer>
             <TabNavigator />
+            <FlashMessage position="top" />
           </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>

@@ -15,7 +15,7 @@ function EditRoutine() {
   const route = useRoute();
   const navigation = useNavigation();
   const { routine } = route.params as { routine: Routine };
-  const { onSubmit } = useEditRoutineExercise();
+  const { onSubmit } = useEditRoutineExercise(routine.id);
 
   const formMethods = useForm<IRoutineFormValues>({
     defaultValues: {
