@@ -5,6 +5,9 @@
 
 Gymlog is a fitness application that helps users track their workouts, monitor progress, and stay motivated. This repository contains the frontend of the Gymlog application, built with React Native.
 
+| ![Logo](https://github.com/user-attachments/assets/c0579407-89e4-4b2f-8703-82ef91a56c26) | ![Logo](https://github.com/user-attachments/assets/932d832a-9c15-4036-9558-f77b96e48285) |
+|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+
 ## Table of Contents
 
 - [Features](#features)
